@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:simple="http://cxf.apache.org/simple" xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+        http://cxf.apache.org/simple http://cxf.apache.org/schemas/simple.xsd
+        http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
+        
+        
+        
+    <bean id="providerdao"
+		class="lms.server.security.ProviderDAO" scope="prototype">
+		
+		<property name="passwordEncoder" ref="encoder"/>
+		<property name="userDetailsService" ref="loginService" />
+		
+	</bean>
+	
+	<bean id="loginService" class="lms.server.security.DetailsAccessService"> 
+	
+		<property name="userServ">
+      		<ref bean="userService" />
+    	</property>
+     	
+	</bean>
+	
+	<bean id="encoder" class="org.springframework.security.crypto.password.NoOpPasswordEncoder" factory-method="getInstance"/>
+        
+        
+</beans>

@@ -1,0 +1,243 @@
+
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+  color: #777777;
+  margin: 40px 0px 70px;
+  text-align: center;
+}
+
+.redLabel {
+    color: red;
+}
+
+
+
+
+
+.myLabelStyle {
+  color: #FF0000; 
+}
+body {
+  background-color: #ff80ff; 
+}
+
+.sendButton {
+  display: block;
+  font-size: 16pt;
+}
+.bodytag{
+	
+	
+}
+
+.gwt-DialogBox {
+  width: 400px;
+}
+
+
+.rootelement {
+    background-color:green 
+   	
+}
+
+.dialogVPanel {
+  margin: 5px;
+}
+
+.serverResponseLabelError {
+  color: red;
+}
+
+
+#closeButton {
+  margin: 15px 6px 6px;
+}
+.icon-button {
+    cursor: pointer; 
+}
+
+
+
+/* Style for the login card */
+.material-card {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: left;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Style for the form input fields */
+.material-textbox {
+    width: 100%;
+    margin: 10px 0;
+}
+
+/* Style for the login button */
+.material-button {
+    width: 90%;
+    margin-top: 20px;
+    background-color: #007bff;
+    color: #fff;
+}
+
+.material-button:hover {
+    background-color: red;
+}
+
+/* styles.css */
+.login-page {
+   
+    background-color:lightyellow;
+   
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Apply styles to the main content panel */
+.vertical-panel {
+    margin: 20px;
+}
+
+/* Style the MaterialNavBar */
+.nav-bar {
+    background-color: #FFD3D0; /* White background color */
+    border-radius: 5px;
+    padding: 5px 2px; /* Add padding to the navbar */
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+	display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Distribute elements evenly */
+    align-items: center; /* Center items vertically */
+}
+.nav-bar > * {
+    margin: 0 30px; /* Adjust the margin for spacing */
+}
+.nav-bar a {
+    color: #333; /* Text color */
+    padding: 10px 20px;
+    text-decoration: none;
+    padding: 10px; /* Adjust padding for spacing */
+}
+
+.nav-bar a:hover {
+    background-color: lightblue; /* Background color on hover */
+}
+/* Style the navigation links in the MaterialSideNav */
+.side-nav {
+    background-color: #333; /* Dark background color */
+    color: #fff; /* Text color */
+}
+
+.side-nav a {
+    color: #fff; /* Link text color */
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+}
+
+.side-nav a:hover {
+    background-color: #444; /* Hover color */
+}
+
+/* Style the dashboard content */
+.dashboard-content {
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Style the buttons for employee management */
+.employee-button {
+    margin-top: 10px;
+    background-color: #2196F3; /* Material Design blue color */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.employee-button:hover {
+    background-color: #1976D2; /* Darker blue on hover */
+}
+.dashboard-style{
+	 background-color: lightgrey; /* Darker blue on hover */
+	
+	
+}
+
+
+
+
+
+
+
+
+.right-dialog-box {
+  position: fixed;
+  top: 70px; /* Adjust this value as needed */
+  right: 250px; /* Adjust this value as needed */
+  /* Additional styling properties */
+}
+
+
+/* Navbar container */
+.material-navbar {
+   background-color: #2196F3;
+    color: #ffffff;
+    font-size: 16px;
+    display: flex; /* Make the navbar horizontal */
+    justify-content: space-between; /* Distribute the content horizontally */
+    align-items: center; /* Vertically center the content */
+}
+
+/* Brand/logo */
+.material-navbar .brand-logo {
+    font-size: 24px; /* Brand/logo font size */
+    font-weight: bold;
+    padding: 10px; /* Add padding for spacing */
+    text-decoration: none;
+    color: inherit; /* Inherit text color */
+}
+
+/* Navbar links */
+.material-navbar .navbar-section a {
+    color: #ffffff; /* Link text color */
+    margin: 0 20px; /* Spacing between links */
+    text-decoration: none;
+    transition: color 0.3s; /* Smooth color transition on hover */
+}
+
+.material-navbar .navbar-section a:hover {
+    color: #FFC107; /* Color on hover */
+}
+
+/* Responsive menu icon */
+.material-navbar .side-nav-trigger {
+    color: #ffffff;
+}
+
+/* SideNav (mobile menu) */
+/* Define your SideNav styles here if applicable */
+
+
+
+
+
+
+
+
