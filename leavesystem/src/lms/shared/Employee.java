@@ -2,17 +2,22 @@ package lms.shared;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
 
+import lms.shared.heirarchy.Company;
 import lms.shared.heirarchy.Department;
 
 public class Employee extends User implements IsSerializable{
 	
 	private int employeeId;
 	
+	private String position;
+	
 	private String firstName;
 	
 	private String lastName;
 	
 	private String email;
+	
+	private Company company;
 	
 	private Department department;
 	
@@ -60,5 +65,22 @@ public class Employee extends User implements IsSerializable{
 	public void setDepartment(Department department) {
 		this.department = department;
 	}
+
+	public String getPosition() {
+		return position;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
+	}
+
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
+	}
+	
 	
 }

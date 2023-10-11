@@ -57,6 +57,45 @@ body {
     cursor: pointer; 
 }
 
+.material-card-leavetype {
+    width: 520px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: left;
+    background-color: rgb(197, 251, 252);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.material-card-holiday {
+    width: 420px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: left;
+    background-color: rgb(197, 251, 252);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.material-card-employee {
+    width: 920px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: left;
+    background-color: rgb(197, 251, 252);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.material-card-scrollpanel {
+    width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: left;
+    background-color: rgb(197, 251, 252);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
 
 
 /* Style for the login card */
@@ -69,6 +108,21 @@ body {
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
+
+.material-card-login {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: left;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 
 /* Style for the form input fields */
 .material-textbox {

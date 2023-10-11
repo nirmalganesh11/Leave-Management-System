@@ -5,6 +5,8 @@ import gwt.material.design.client.constants.ButtonType;
 import gwt.material.design.client.constants.IconType;
 import gwt.material.design.client.ui.*;
 import lms.client.admin.AdminEntryPoint;
+import lms.client.clientservices.EmployeeServiceClient;
+import lms.client.clientservices.EmployeeServiceClientAsync;
 import lms.client.clientservices.UserServiceClient;
 import lms.client.clientservices.UserServiceClientAsync;
 import lms.client.staff.StaffEntryPoint;
@@ -38,16 +40,16 @@ import lms.shared.security.Role;
 public class LoginView extends Composite implements ValueChangeHandler<String> {
 	
 	UserServiceClientAsync servclient = GWT.create(UserServiceClient.class);
-	 
+	 EmployeeServiceClientAsync empServ = GWT.create(EmployeeServiceClient.class);
 	
     private MaterialTextBox usernameTextBox;
     private MaterialTextBox passwordTextBox;
     private MaterialButton loginButton;
     
-    private MaterialButton userSeeButton;
-    private MaterialButton saveUserButton;
-    private MaterialButton getRoleButton;
-    private MaterialButton getUserButton;
+//    private MaterialButton userSeeButton;
+//    private MaterialButton saveUserButton;
+//    private MaterialButton getRoleButton;
+//    private MaterialButton getUserButton;
     
  
     
@@ -85,16 +87,16 @@ public class LoginView extends Composite implements ValueChangeHandler<String> {
         
         loginButton = new MaterialButton(ButtonType.RAISED, "Submit", new MaterialIcon(IconType.SEND));
         
-        userSeeButton = new MaterialButton(ButtonType.RAISED, "testlogin", new MaterialIcon(IconType.SEND));
-       saveUserButton = new MaterialButton(ButtonType.RAISED, "testusersave", new MaterialIcon(IconType.SEND));
-        getRoleButton = new MaterialButton(ButtonType.RAISED, "getRole", new MaterialIcon(IconType.SEND));
-        
-       getUserButton = new MaterialButton(ButtonType.RAISED, "getUser", new MaterialIcon(IconType.SEND));
+//        userSeeButton = new MaterialButton(ButtonType.RAISED, "testlogin", new MaterialIcon(IconType.SEND));
+//       saveUserButton = new MaterialButton(ButtonType.RAISED, "testusersave", new MaterialIcon(IconType.SEND));
+//        getRoleButton = new MaterialButton(ButtonType.RAISED, "getRole", new MaterialIcon(IconType.SEND));
+//        
+//       getUserButton = new MaterialButton(ButtonType.RAISED, "getUser", new MaterialIcon(IconType.SEND));
 
         loginButton.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-
+				//saveEmployee();
 				username = usernameTextBox.getText();
 				password = passwordTextBox.getText();
 				String credentials = username + ":" + password;
@@ -106,113 +108,7 @@ public class LoginView extends Composite implements ValueChangeHandler<String> {
         	
         });
         
-        userSeeButton.addClickHandler(new ClickHandler() {
-
-			@Override
-			public void onClick(ClickEvent event) {
-				
-				servclient.getLoggedInUser(new AsyncCallback<String>() {
-
-					@Override
-					public void onFailure(Throwable caught) {
-						Window.alert("failure near loggged in user------"+caught.toString());
-					}
-
-					@Override
-					public void onSuccess(String result) {
-						Window.alert(result);
-					}
-					
-					
-				});
-				
-				
-			}
-        });
-        
-        saveUserButton.addClickHandler(new ClickHandler() {
-
-			@Override
-			public void onClick(ClickEvent event) {
-				
-				List<Permission> permlist = new ArrayList<Permission>();
-				permlist.add(new Permission("staffpermission1","staff Permission"));
-				permlist.add(new Permission("staffpermission2","thisstaffpermi"));
-				permlist.add(new Permission("stafffboy","ahassstaffpermissionn"));
-				
-				Role hrrole = new Role("ROLE_STAFF",permlist);
-			
-				
-				User newUser = new User("staff","staff",hrrole);
-				
-				
-				
-				servclient.saveUser(newUser, new AsyncCallback<String>() {
-
-					@Override
-					public void onFailure(Throwable caught) {
-						Window.alert("Threw error while saving ------" + caught.toString());
-					}
-
-					@Override
-					public void onSuccess(String result) {
-						Window.alert(result);
-					}
-					
-				});
-			
-				
-			}
-        	
-        });
-        
-        
-        getRoleButton.addClickHandler(new ClickHandler() {
-
-			@Override
-			public void onClick(ClickEvent event) {
-				servclient.getRole(new AsyncCallback<Role>() {
-
-					@Override
-					public void onFailure(Throwable caught) {
-						Window.alert(caught.toString()+"error near getting role");
-					}
-
-					@Override
-					public void onSuccess(Role result) {
-						Window.alert(result.getRoleName()+result.getPermissions().toString());
-					}
-					
-					
-				});
-			}
-        	
-        	
-        });
-        getUserButton.addClickHandler(new ClickHandler() {
-
-			@Override
-			public void onClick(ClickEvent event) {
-				
-				servclient.getUser(usernameTextBox.getText(),new AsyncCallback<User>() {
-
-					@Override
-					public void onFailure(Throwable caught) {
-						Window.alert(caught.toString());
-					}
-
-					@Override
-					public void onSuccess(User result) {
-						Window.alert(result.getUsername()+result.getRole().getRoleName()+ result.getRole().getPermissions().get(0).getPermissionName());
-					}
-					
-					
-				});
-				
-				
-			}
-        });
-        
+   
         
         
         
@@ -225,7 +121,7 @@ public class LoginView extends Composite implements ValueChangeHandler<String> {
 				RootPanel.get().clear();
 				
 				ResetPasswordPage rsp = new ResetPasswordPage();
-				rsp.addStyleName("material-card");
+				rsp.addStyleName("material-card-login");
 		        rsp.getUserIdTextBox().addStyleName("material-textbox");
 		        rsp.getEmailTextBox().addStyleName("material-textbox");
 		        rsp.getResetPasswordButton().addStyleName("material-button");
@@ -240,10 +136,10 @@ public class LoginView extends Composite implements ValueChangeHandler<String> {
         card.add(passwordTextBox);
         card.add(forgotPassword);
         card.add(loginButton);
-        card.add(userSeeButton);
-        card.add(saveUserButton);
-        card.add(getRoleButton);
-        card.add(getUserButton);
+//        card.add(userSeeButton);
+//        card.add(saveUserButton);
+//        card.add(getRoleButton);
+//        card.add(getUserButton);
 
         initWidget(card);
     }
@@ -397,6 +293,43 @@ public class LoginView extends Composite implements ValueChangeHandler<String> {
 		}
 		
 	}
+    
+    public void saveEmployee() {
+    	List<Permission> permList = new ArrayList<Permission>();
+    	Permission p1 = new Permission("staffPermission","staffpermdesc");
+    	permList.add(p1);
+    	
+    	Role newRole = new Role("ROLE_STAFF",permList);
+    	
+    	Company newCompany = new Company("secondcompany","second company descriptiion");
+    	
+    	Department dp = new Department("second department","second department description",newCompany);
+    	
+    	Employee emp = new Employee();
+    	
+    	emp.setUsername("staff");
+    	emp.setPassword("staff");
+    	emp.setRole(newRole);
+    	emp.setFirstName("stafffirstname");
+    	emp.setCompany(newCompany);
+    	emp.setDepartment(dp);
+    	emp.setPosition("staff");
+    	
+    	empServ.saveEmployee(emp, new AsyncCallback<String>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert(caught.toString());
+			}
+
+			@Override
+			public void onSuccess(String result) {
+				Window.alert(result);
+			}
+
+    	});
+    	
+    }
 
 
 }

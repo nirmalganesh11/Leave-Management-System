@@ -4,7 +4,7 @@ import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 import lms.shared.User;
-import lms.shared.security.Role;
+
 
 @RemoteServiceRelativePath("auth")
 public interface UserServiceClient extends RemoteService{
@@ -15,7 +15,7 @@ public interface UserServiceClient extends RemoteService{
 	
 	String saveUser(User user);
 	
-	Role getRole();
+
 	
 	Boolean isAuthenticated();
 	
@@ -23,4 +23,6 @@ public interface UserServiceClient extends RemoteService{
 	User getUser(String username);
 	
 	User getAuthenticatedUser();
+	
+	String logoutUser();
 }

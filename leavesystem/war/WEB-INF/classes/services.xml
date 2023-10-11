@@ -20,6 +20,29 @@
 		<constructor-arg ref="departmentDao" />
 	</bean>
 	
+	   
+    <bean id="employeeService" class="lms.server.serverservices.EmployeeServiceImpl">
+		<constructor-arg ref="employeeDao"/>
+	</bean>
+	
+	<bean id="accessControlService" class="lms.server.serverservices.AccessControlServiceImpl">
+		<constructor-arg ref="roleDao" />
+		<constructor-arg ref="permissionDao" />
+	</bean>
+	
+	 <bean id="holidayService" class="lms.server.serverservices.HolidayServiceImpl">
+		<constructor-arg ref="holidayDao" />
+	</bean>
+	
+	 <bean id="leaveTypeService" class="lms.server.serverservices.LeaveTypeServiceImpl">
+		<constructor-arg ref="leaveTypeDao" />
+	</bean>
+	
+	<bean id="leaveRequestService" class="lms.server.serverservices.LeaveRequestServiceImpl">
+		<constructor-arg ref="leaveRequestDao" />
+	</bean>
+	
+	
 	<import resource ="classpath:applicationcontext.xml" />
  
 </beans>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="lms.shared.utility.LeaveType" table="leave_type">
+        <id name="id" column="id">
+            <generator class="identity" />
+        </id>
+        <property name="leaveTypeName" column="leave_type_name" />
+        <property name="leaveTypeDesc" column="leave_type_desc" />
+        <property name="daysCount" column="days_count" />
+    </class>
+</hibernate-mapping>

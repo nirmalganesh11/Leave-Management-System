@@ -1,7 +1,7 @@
 package lms.server.serverserviceinterfaces;
 
 import lms.shared.User;
-import lms.shared.security.Role;
+
 
 public interface UserService {
 	
@@ -9,8 +9,5 @@ public interface UserService {
 	
 	String saveUser(User saved);
 	
-	Role getRole();
-	
 	User getUser(String username);
-	
 }

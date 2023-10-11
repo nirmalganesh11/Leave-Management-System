@@ -13,6 +13,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 
 import lms.client.admin.AdminEntryPoint;
 import lms.client.clientservices.UserServiceClient;
@@ -93,14 +94,21 @@ public class LeaveManagementSystem implements EntryPoint{
 	}
 	public void showLoginView() {
 		
+		
+		
 		RootPanel.get().addStyleName("login-page");
 		
+		
+
+		
+		
 		LoginView jslogin = new LoginView();
-	    jslogin.addStyleName("material-card");
+	    jslogin.addStyleName("material-card-login");
 	    jslogin.getUsernameTextBox().addStyleName("material-textbox");
 	    jslogin.getPasswordTextBox().addStyleName("material-textbox");
 	    jslogin.getLoginButton().addStyleName("material-button");
 	    
+
 		RootPanel.get().add(jslogin);
 		
 	}

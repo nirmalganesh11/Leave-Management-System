@@ -1,7 +1,7 @@
 package lms.client.admin.pages;
 
 
-
+import gwt.material.design.client.ui.MaterialTextArea;
 import gwt.material.design.client.constants.ButtonType;
 import gwt.material.design.client.constants.IconType;
 import gwt.material.design.client.ui.*;
@@ -52,8 +52,9 @@ public class CompanyPage extends Composite {
         MaterialLabel companyDescLabel = new MaterialLabel("Company Description:");
         companyDescBox = new MaterialTextBox();
         
-
-        
+       // MaterialTextArea textArea = new MaterialTextArea();
+        //textArea.setPlaceholder("Enter your multiline text here");
+       
        createButton = new MaterialButton(ButtonType.RAISED, "Create", new MaterialIcon(IconType.SEND));
         
        
@@ -77,6 +78,7 @@ public class CompanyPage extends Composite {
 					@Override
 					public void onSuccess(String result) {
 						Window.alert(result);
+						Window.Location.reload();
 					}
 
 				});
@@ -92,10 +94,11 @@ public class CompanyPage extends Composite {
         card.add(companyNameBox);
         card.add(companyDescLabel);
         card.add(companyDescBox);
-     
+        //card.add(textArea);
+        
         card.add(createButton);
       
-
+        
         initWidget(card);
     }
 

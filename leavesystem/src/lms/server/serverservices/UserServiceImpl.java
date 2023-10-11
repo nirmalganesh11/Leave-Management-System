@@ -1,15 +1,16 @@
 package lms.server.serverservices;
 
-import org.hibernate.Hibernate;
+
 
 import lms.server.daopack.UserDao;
 import lms.server.serverserviceinterfaces.UserService;
 import lms.shared.User;
-import lms.shared.security.Role;
+
 
 public class UserServiceImpl implements UserService {
 	
 	private UserDao userDao;
+	
 	
 	public UserServiceImpl(UserDao userDao) {
 		this.userDao = userDao;
@@ -29,16 +30,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 
-	@Override
-	public Role getRole() {
-		
-		Role role = userDao.getRole();
-		
-		return role;
-		
-	}
-
-
+	
 	@Override
 	public User getUser(String username) {
 		return userDao.getUser(username);

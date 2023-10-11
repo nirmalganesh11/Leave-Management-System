@@ -3,7 +3,7 @@ package lms.client.clientservices;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import lms.shared.User;
-import lms.shared.security.Role;
+
 
 public interface UserServiceClientAsync {
 	
@@ -13,7 +13,7 @@ public interface UserServiceClientAsync {
 	
 	void saveUser(User user,AsyncCallback<String> callback);
 	
-	void getRole(AsyncCallback<Role> callback);
+	
 	
 	void getUser(String username,AsyncCallback<User> callback);
 	
@@ -21,5 +21,7 @@ public interface UserServiceClientAsync {
 	
 	
 	void getAuthenticatedUser(AsyncCallback<User> callback);
+	
+	void logoutUser(AsyncCallback<String> callback);
 
 }

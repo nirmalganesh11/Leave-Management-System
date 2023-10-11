@@ -109,7 +109,7 @@ public class CompanyListPage extends Composite {
         
         ScrollPanel scrollPanel = new ScrollPanel();
         scrollPanel.setWidget(companyTable);
-        scrollPanel.setSize("700px", "500px");
+        scrollPanel.setSize("500px", "400px");
         
         card.add(heading);
         card.add(scrollPanel);

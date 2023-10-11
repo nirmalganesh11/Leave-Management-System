@@ -24,9 +24,65 @@
     <servlet-name>heirarchyServlet</servlet-name>
     <url-pattern>/leavesystem/ladder</url-pattern>
   </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>employeeServlet</servlet-name>
+    <servlet-class>lms.server.EmployeeServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>employeeServlet</servlet-name>
+    <url-pattern>/leavesystem/emp</url-pattern>
+  </servlet-mapping>
 
 
-    
+  <servlet>
+    <servlet-name>accessControlServlet</servlet-name>
+    <servlet-class>lms.server.AccessControlServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>accessControlServlet</servlet-name>
+    <url-pattern>/leavesystem/access</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>holidayServlet</servlet-name>
+    <servlet-class>lms.server.HolidayServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>holidayServlet</servlet-name>
+    <url-pattern>/leavesystem/holiday</url-pattern>
+  </servlet-mapping>
+  
+  
+   <servlet>
+    <servlet-name>leaveTypeServlet</servlet-name>
+    <servlet-class>lms.server.LeaveTypeServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>leaveTypeServlet</servlet-name>
+    <url-pattern>/leavesystem/leavetype</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>leaveRequestServlet</servlet-name>
+    <servlet-class>lms.server.LeaveRequestServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>leaveRequestServlet</servlet-name>
+    <url-pattern>/leavesystem/request</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+  
+  
   	<context-param>
     	<param-name>contextConfigLocation</param-name>
     	<param-value>

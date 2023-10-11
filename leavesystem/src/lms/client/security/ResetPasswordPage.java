@@ -77,7 +77,7 @@ public class ResetPasswordPage extends Composite {
 		    	RootPanel.get().addStyleName("login-page");
 		    	
 		    	LoginView loginView = new LoginView();
-		        loginView.addStyleName("material-card");
+		        loginView.addStyleName("material-card-login");
 		        loginView.getUsernameTextBox().addStyleName("material-textbox");
 		        loginView.getPasswordTextBox().addStyleName("material-textbox");
 		        loginView.getLoginButton().addStyleName("material-button");

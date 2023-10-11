@@ -46,7 +46,12 @@
 		
 		<property name="securityMetadataSource">
 		    <security:filter-security-metadata-source request-matcher="ant" use-expressions="false">
+		   		<security:intercept-url pattern="leavesystem/access" access ="IS_AUTHENTICATED_FULLY"/>
 		    	<security:intercept-url pattern="/leavesystem/ladder" access="IS_AUTHENTICATED_FULLY"/>
+		    	<security:intercept-url pattern="/leavesystem/emp" access="IS_AUTHENTICATED_FULLY"/>
+		    	<security:intercept-url pattern="/leavesystem/holiday" access="IS_AUTHENTICATED_FULLY"/>
+		    	<security:intercept-url pattern="/leavesystem/leavetype" access="IS_AUTHENTICATED_FULLY"/>
+		    	<security:intercept-url pattern="/leavesystem/request" access="IS_AUTHENTICATED_FULLY"/>
 		    	<security:intercept-url pattern="/leavesystem/auth" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
 		    </security:filter-security-metadata-source>
 		</property>

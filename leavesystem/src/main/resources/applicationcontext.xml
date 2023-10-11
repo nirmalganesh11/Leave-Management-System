@@ -39,7 +39,9 @@
 				<value>company.hbm.xml</value>
 				<value>department.hbm.xml</value>
 				<value>employee.hbm.xml</value>
-				
+				<value>Holiday.hbm.xml</value>
+				<value>LeaveType.hbm.xml</value>
+				<value>LeaveRequest.hbm.xml</value>
 			</list>
 	</property>
 		
@@ -66,6 +68,29 @@
 	</bean>
 	
 	<bean id="departmentDao" class="lms.server.daopack.DepartmentDao">
+		  <constructor-arg ref="sessionFactory" />
+	</bean>
+	
+	<bean id="employeeDao" class="lms.server.daopack.EmployeeDao">
+		  <constructor-arg ref="sessionFactory" />
+	</bean>
+	
+	<bean id="roleDao" class="lms.server.daopack.RoleDao">
+		  <constructor-arg ref="sessionFactory" />
+	</bean>
+	
+	<bean id="permissionDao" class="lms.server.daopack.PermissionDao">
+		  <constructor-arg ref="sessionFactory" />
+	</bean>
+	<bean id="holidayDao" class="lms.server.daopack.HolidayDao">
+		  <constructor-arg ref="sessionFactory" />
+	</bean>
+	
+	<bean id="leaveTypeDao" class="lms.server.daopack.LeaveTypeDao">
+		  <constructor-arg ref="sessionFactory" />
+	</bean>
+	
+	<bean id="leaveRequestDao" class="lms.server.daopack.LeaveRequestDao">
 		  <constructor-arg ref="sessionFactory" />
 	</bean>
 	

@@ -10,6 +10,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import lms.client.clientservices.HeirarchyServiceClient;
 import lms.server.serverserviceinterfaces.HeirarchyService;
 import lms.shared.heirarchy.Company;
+import lms.shared.heirarchy.Department;
 
 public class HeirarchyServlet extends RemoteServiceServlet implements HeirarchyServiceClient {
 	
@@ -34,6 +35,25 @@ public class HeirarchyServlet extends RemoteServiceServlet implements HeirarchyS
 	@Override
 	public List<Company> getAllCompanies() {
 		return hrServ.getAllCompanies();
+	}
+
+
+	@Override
+	public String saveDepartment(Department dept) {
+		return hrServ.saveDepartment(dept);
+	}
+
+
+	@Override
+	public List<Department> getAllDepartments() {
+		return hrServ.getAllDepartments();
+	}
+
+
+	@Override
+	public List<Department> companyDepartments(Company company) {
+		
+		return hrServ.companyDepartments(company);
 	}
 	
 	

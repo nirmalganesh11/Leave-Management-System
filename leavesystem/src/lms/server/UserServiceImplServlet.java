@@ -1,18 +1,24 @@
 package lms.server;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import lms.client.clientservices.UserServiceClient;
 import lms.server.serverserviceinterfaces.UserService;
 import lms.shared.User;
-import lms.shared.security.Role;
+
 
 
 public class UserServiceImplServlet extends RemoteServiceServlet implements UserServiceClient{
@@ -69,11 +75,6 @@ public class UserServiceImplServlet extends RemoteServiceServlet implements User
 	}
 
 	@Override
-	public Role getRole() {	
-		return userServ.getRole();
-	}
-
-	@Override
 	public User getUser(String username) {
 		return userServ.getUser(username);
 	}
@@ -87,7 +88,7 @@ public class UserServiceImplServlet extends RemoteServiceServlet implements User
 			
 			if(principal instanceof UserDetails) {
 				UserDetails userDetails = (UserDetails) principal;
-				if(userDetails.getUsername().equals("anonymous")) {
+				if(userDetails.getUsername().equals("anonymous") || userDetails.getUsername().equals("anonymousUser") ) {
 					return false;
 				}
 				return true;
@@ -112,6 +113,20 @@ public class UserServiceImplServlet extends RemoteServiceServlet implements User
 		}
 		return user;
 	}
+
+	@Override
+	public String logoutUser() {
+		AnonymousAuthenticationToken anonymousAuthentication = new AnonymousAuthenticationToken(
+	            "anonymousUser", "anonymousUser", 
+	            new ArrayList<>(Arrays.asList(new SimpleGrantedAuthority("ROLE_ANONYMOUS")))
+	        );
+
+	        
+	    SecurityContextHolder.getContext().setAuthentication(anonymousAuthentication);
+
+	    return "redirect:/logout-success";
+	}
+	
 	
 	
 	

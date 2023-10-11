@@ -2,7 +2,11 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="lms.shared">
      <joined-subclass name="lms.shared.Employee" table="employee" extends="lms.shared.User">
+     
         <key column="user_id"/> <!-- This is the foreign key linking Employee to User -->
+        
+     	
+        
         <property name="firstName" type="string">
             <column name="FirstName" length="255" />
         </property>
@@ -12,9 +16,22 @@
         <property name="email" type="string">
             <column name="email" length="255" />
         </property>
-        <!-- Add other properties specific to Employee -->
-        <many-to-one name="department" class="lms.shared.heirarchy.Department" cascade="all">
+        
+         <property name="position" type="string">
+            <column name="position" length="255" />
+        </property>
+  
+  	    	
+      	  <!-- Add other properties specific to Employee -->
+        <many-to-one name="department" class="lms.shared.heirarchy.Department" cascade="all" fetch="select">
             <column name="department_id" />
         </many-to-one>
+        
+        
+        <many-to-one name="company" class="lms.shared.heirarchy.Company" fetch="select" >
+            <column name="company_id" />
+        </many-to-one>
+        
+        
     </joined-subclass>
 </hibernate-mapping>

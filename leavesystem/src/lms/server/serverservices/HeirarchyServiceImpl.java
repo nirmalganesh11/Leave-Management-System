@@ -5,9 +5,10 @@ import java.util.List;
 
 import lms.server.daopack.CompanyDao;
 import lms.server.daopack.DepartmentDao;
-import lms.server.daopack.UserDao;
+
 import lms.server.serverserviceinterfaces.HeirarchyService;
 import lms.shared.heirarchy.Company;
+import lms.shared.heirarchy.Department;
 
 public class HeirarchyServiceImpl implements HeirarchyService {
 
@@ -31,7 +32,24 @@ public class HeirarchyServiceImpl implements HeirarchyService {
 	public List<Company> getAllCompanies() {
 		return companyDao.getAllCompanies();
 	}
-	
-	
 
+
+	@Override
+	public String saveDepartment(Department dept) {
+		return deptDao.saveDepartment(dept);
+	}
+
+
+	@Override
+	public List<Department> getAllDepartments() {
+		return deptDao.getAllDepartments();
+	}
+
+
+	@Override
+	public List<Department> companyDepartments(Company company) {
+		int companyId = company.getCompanyId();
+		return deptDao.companyDepartments(companyId);
+	}
+	
 }
