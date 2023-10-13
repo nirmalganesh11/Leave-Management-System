@@ -1,5 +1,6 @@
 package lms.server;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.context.ApplicationContext;
@@ -35,5 +36,13 @@ public class LeaveRequestServlet extends RemoteServiceServlet implements LeaveRe
 	public List<LeaveRequest> getAllLeaveRequests() {
 		return reqServ.getAllRequests();
 	}
+
+
+
+	@Override
+	public int countLeaveDays(Date startDate, Date endDate, List<Date> holidayDates) {
+		return reqServ.countLeaveDaysDays(startDate, endDate, holidayDates);
+	}
+
 
 }

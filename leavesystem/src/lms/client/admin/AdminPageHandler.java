@@ -10,6 +10,7 @@ import lms.client.admin.pages.EmployeeListPage;
 import lms.client.admin.pages.EmployeePage;
 import lms.client.admin.pages.HolidayListPage;
 import lms.client.admin.pages.HolidayPage;
+import lms.client.admin.pages.LeaveRequestListPage;
 import lms.client.admin.pages.LeaveTypeListPage;
 import lms.client.admin.pages.LeaveTypePage;
 import lms.client.clientservices.UserServiceClient;
@@ -238,6 +239,22 @@ public class AdminPageHandler extends VerticalPanel {
 				
 			}
 			
+        });
+        
+        leavesLink.addClickHandler(new ClickHandler() {
+
+			@Override
+			public void onClick(ClickEvent event) {
+				LeaveRequestListPage lrpage = new LeaveRequestListPage();
+			    lrpage.addStyleName("material-card-request");
+			    
+			    changePanel.clear();
+				changePanel.add(lrpage);
+			    
+			    
+			}
+        	
+        	
         });
         
         

@@ -63,7 +63,7 @@ public class LeaveTypeListPage extends Composite {
 
 			@Override
 			public String getValue(LeaveType object) {
-				return String.valueOf(object.getId());
+				return String.valueOf(object.getLeaveTypeId());
 			}
 		};
 		

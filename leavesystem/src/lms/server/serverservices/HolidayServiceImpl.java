@@ -1,6 +1,7 @@
 package lms.server.serverservices;
 
 
+import java.util.Date;
 import java.util.List;
 
 import lms.server.daopack.HolidayDao;
@@ -23,6 +24,11 @@ public class HolidayServiceImpl implements HolidayService {
 	@Override
 	public List<Holiday> getAllHolidays() {
 		return dao.getAllHolidays();
+	}
+
+	@Override
+	public List<Date> listHolidayDates() {
+		return dao.listHolidayDates();
 	}
 
 }

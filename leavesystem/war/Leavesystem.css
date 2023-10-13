@@ -86,7 +86,15 @@ body {
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
-
+.material-card-request {
+    width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: left;
+    background-color: rgb(197, 251, 252);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
 .material-card-scrollpanel {
     width: 500px;
     margin: 0 auto;

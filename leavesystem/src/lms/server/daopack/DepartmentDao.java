@@ -58,7 +58,7 @@ public class DepartmentDao extends CommonCode {
 	        if (transaction != null) {
 	            transaction.rollback();
 	        }
-	        e.printStackTrace();
+	        //e.printStackTrace();
 	    } finally {
 	        session.close();
 	    }

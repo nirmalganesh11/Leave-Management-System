@@ -5,6 +5,8 @@ import gwt.material.design.client.constants.IconType;
 import gwt.material.design.client.ui.*;
 import lms.client.clientservices.EmployeeServiceClient;
 import lms.client.clientservices.EmployeeServiceClientAsync;
+import lms.client.clientservices.HolidayServiceClient;
+import lms.client.clientservices.HolidayServiceClientAsync;
 import lms.client.clientservices.LeaveRequestServiceClient;
 import lms.client.clientservices.LeaveRequestServiceClientAsync;
 import lms.client.clientservices.LeaveTypeServiceClient;
@@ -13,16 +15,23 @@ import lms.client.clientservices.UserServiceClient;
 import lms.client.clientservices.UserServiceClientAsync;
 import lms.shared.Employee;
 import lms.shared.User;
+import lms.shared.utility.Holiday;
+import lms.shared.utility.LeaveRequest;
 import lms.shared.utility.LeaveStatus;
 import lms.shared.utility.LeaveType;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
@@ -34,14 +43,16 @@ public class LeaveRequestPage extends Composite {
 	LeaveTypeServiceClientAsync typeServ = GWT.create(LeaveTypeServiceClient.class);
 	UserServiceClientAsync userServ = GWT.create(UserServiceClient.class);
 	EmployeeServiceClientAsync empServ = GWT.create(EmployeeServiceClient.class);
+	HolidayServiceClientAsync holServ = GWT.create(HolidayServiceClient.class);
 	
 	private List<LeaveType> listOfTypes  = new ArrayList<>();
+	private List<Date> listOfHolidayDates = new ArrayList<>();
 	
 	private Employee presentEmployee;
 	private LeaveType selectedLeaveType;
 	private LeaveStatus status = LeaveStatus.PENDING;
-    private Date start_date;
-    private Date end_date;
+    private Date start_date = new Date();
+    private Date end_date = new Date();
     private String description;
     private int leavesCount;
     
@@ -80,6 +91,10 @@ public class LeaveRequestPage extends Composite {
         
         MaterialLabel descriptionLabel = new MaterialLabel("Request Description:");
        	descriptionBox = new MaterialTextBox();
+       	
+       	
+       	countLeavesBox.setText("0");
+        countLeavesBox.setEnabled(false);
         
        	userServ.getAuthenticatedUser(new AsyncCallback<User>() {
 
@@ -103,7 +118,7 @@ public class LeaveRequestPage extends Composite {
 
 					@Override
 					public void onSuccess(Employee result) {
-						Window.alert(result.getFirstName());
+						//Window.alert(result.getFirstName());
 						presentEmployee = result;
 					}
 					
@@ -113,6 +128,21 @@ public class LeaveRequestPage extends Composite {
 
        	});
        	
+       	holServ.listHolidayDates(new AsyncCallback<List<Date>>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert(caught.toString());
+			}
+
+			@Override
+			public void onSuccess(List<Date> result) {
+				listOfHolidayDates.clear();
+				listOfHolidayDates = result;
+			}
+       	});
+       	
+
        	typeServ.getAllLeaveTypes(new AsyncCallback<List<LeaveType>>() {
 
 			@Override
@@ -128,9 +158,62 @@ public class LeaveRequestPage extends Composite {
 				for(LeaveType type: result) {
 					leaveTypeBox.addItem(type.getLeaveTypeName());
 				}
+				selectedLeaveType =result.get(0);
 			}
 
        	});
+       	
+       	leaveTypeBox.addChangeHandler(new ChangeHandler() {
+
+			@Override
+			public void onChange(ChangeEvent event) {
+				int selectedIndex = leaveTypeBox.getSelectedIndex();
+				selectedLeaveType= listOfTypes.get(selectedIndex);
+			}
+
+       	});
+       	
+       	startDateBox.addValueChangeHandler(new ValueChangeHandler<Date>() {
+            @Override
+            public void onValueChange(ValueChangeEvent<Date> event) {
+                start_date = event.getValue();
+                //Window.alert(start_date.toString()+"---"+end_date.toString());
+                reqServ.countLeaveDays(start_date, end_date, listOfHolidayDates,new AsyncCallback<Integer>() {
+
+					@Override
+					public void onFailure(Throwable caught) {
+						Window.alert(caught.toString());
+					}
+
+					@Override
+					public void onSuccess(Integer result) {
+						countLeavesBox.setText(String.valueOf(result));
+						//Window.alert(String.valueOf(result));
+					}
+                });
+            }
+        });
+       	
+     	endDateBox.addValueChangeHandler(new ValueChangeHandler<Date>() {
+            @Override
+            public void onValueChange(ValueChangeEvent<Date> event) {
+                end_date = event.getValue();
+                //Window.alert(start_date.toString()+"---"+end_date.toString());
+                reqServ.countLeaveDays(start_date, end_date, listOfHolidayDates,new AsyncCallback<Integer>() {
+
+					@Override
+					public void onFailure(Throwable caught) {
+						Window.alert(caught.toString());
+					}
+
+					@Override
+					public void onSuccess(Integer result) {
+						countLeavesBox.setText(String.valueOf(result));
+						//Window.alert(String.valueOf(result));
+					}
+                });
+            }
+        });
 
         createButton = new MaterialButton(ButtonType.RAISED, "Create", new MaterialIcon(IconType.SEND));
         
@@ -139,8 +222,35 @@ public class LeaveRequestPage extends Composite {
 			@Override
 			public void onClick(ClickEvent event) {
 				
+				start_date = startDateBox.getValue();
+				end_date = endDateBox.getValue();
+				description = descriptionBox.getText();
+				leavesCount = Integer.valueOf(countLeavesBox.getText());
 				
-											
+				LeaveRequest lr = new LeaveRequest();
+				
+				lr.setEmployee(presentEmployee);
+				lr.setType(selectedLeaveType);
+				lr.setStartDate(start_date);
+				lr.setEndDate(end_date);
+				lr.setStatus(status);
+				lr.setDescription(description);
+				lr.setCountLeaves(leavesCount);
+				
+				reqServ.saveLeaveRequest(lr, new AsyncCallback<String>() {
+
+					@Override
+					public void onFailure(Throwable caught) {
+						Window.alert(caught.toString());
+					}
+
+					@Override
+					public void onSuccess(String result) {
+						Window.alert(result);
+					}
+
+				});
+						
 			}
         	
         });

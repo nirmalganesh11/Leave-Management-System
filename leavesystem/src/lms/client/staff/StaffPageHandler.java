@@ -11,9 +11,11 @@ import lms.client.admin.pages.DepartmentListPage;
 import lms.client.admin.pages.DepartmentPage;
 import lms.client.admin.pages.EmployeeListPage;
 import lms.client.admin.pages.EmployeePage;
+import lms.client.admin.pages.LeaveRequestListPage;
 import lms.client.clientservices.UserServiceClient;
 import lms.client.clientservices.UserServiceClientAsync;
 import lms.client.security.LoginView;
+import lms.client.staff.pages.LeaveRequestListPageStaff;
 import lms.client.staff.pages.LeaveRequestPage;
 import gwt.material.design.client.ui.MaterialLink;
 
@@ -114,7 +116,18 @@ public class StaffPageHandler extends VerticalPanel {
 			}
         });
         
-        
+        previousRequests.addClickHandler(new ClickHandler() {
+
+			@Override
+			public void onClick(ClickEvent event) {
+//				LeaveRequestListPageStaff lrpage = new LeaveRequestListPageStaff();
+//			    lrpage.addStyleName("material-card-request");
+//			    
+//			    changePanel.clear();
+//				changePanel.add(lrpage);
+			}
+
+        });
         
         
         fullbarPanel.setSpacing(10);

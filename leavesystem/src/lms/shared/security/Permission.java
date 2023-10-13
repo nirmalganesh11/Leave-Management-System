@@ -8,6 +8,7 @@ public class Permission implements IsSerializable{
 	
 	private String permissionName;
 	
+	//remove this 
 	private String permissionDescription;
 	
 	public Permission() {

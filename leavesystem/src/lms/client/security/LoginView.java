@@ -296,24 +296,24 @@ public class LoginView extends Composite implements ValueChangeHandler<String> {
     
     public void saveEmployee() {
     	List<Permission> permList = new ArrayList<Permission>();
-    	Permission p1 = new Permission("staffPermission","staffpermdesc");
+    	Permission p1 = new Permission("adminPermission","adminpermdesc");
     	permList.add(p1);
     	
-    	Role newRole = new Role("ROLE_STAFF",permList);
+    	Role newRole = new Role("ROLE_ADMIN",permList);
     	
-    	Company newCompany = new Company("secondcompany","second company descriptiion");
+    	Company newCompany = new Company("frist company","frist company descriptiion");
     	
-    	Department dp = new Department("second department","second department description",newCompany);
+    	Department dp = new Department("frist department","frist department description",newCompany);
     	
     	Employee emp = new Employee();
     	
-    	emp.setUsername("staff");
-    	emp.setPassword("staff");
+    	emp.setUsername("admin");
+    	emp.setPassword("admin");
     	emp.setRole(newRole);
-    	emp.setFirstName("stafffirstname");
+    	emp.setFirstName("admin first name");
     	emp.setCompany(newCompany);
     	emp.setDepartment(dp);
-    	emp.setPosition("staff");
+    	emp.setPosition("admin");
     	
     	empServ.saveEmployee(emp, new AsyncCallback<String>() {
 

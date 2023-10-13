@@ -6,12 +6,7 @@
   <packaging>war</packaging>
   <name>managmentsytem</name>
   <description>hellosys</description>
-  
-  
-  
-  
-  
-  
+
    <properties>
     <gwt-material.version>1.5.0</gwt-material.version>
   </properties>

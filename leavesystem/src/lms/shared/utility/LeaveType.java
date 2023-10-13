@@ -4,7 +4,7 @@ import com.google.gwt.user.client.rpc.IsSerializable;
 
 public class LeaveType implements IsSerializable{
 	
-	private int id;
+	private int leaveTypeId;
 	
 	private String leaveTypeName;
 	
@@ -21,11 +21,12 @@ public class LeaveType implements IsSerializable{
 		this.daysCount = daysCount;
 	}
 	
-	public int getId() {
-		return id;
+	
+	public int getLeaveTypeId() {
+		return leaveTypeId;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setLeaveTypeId(int leaveTypeId) {
+		this.leaveTypeId = leaveTypeId;
 	}
 	public String getLeaveTypeName() {
 		return leaveTypeName;

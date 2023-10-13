@@ -1,5 +1,7 @@
 package lms.server.daopack;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -29,5 +31,14 @@ public class HolidayDao extends CommonCode {
 		String fetchClause= "";
 		return getAllEntities(Holiday.class,factory,fetchClause);
 	}
-
+	
+	public List<Date> listHolidayDates()
+	{
+		List<Holiday> holidays = getAllHolidays();
+		List<Date> dates = new ArrayList<>();
+		for(Holiday hol: holidays) {
+			dates.add(hol.getHolidayDate());
+		}
+		return dates;
+	}
 }

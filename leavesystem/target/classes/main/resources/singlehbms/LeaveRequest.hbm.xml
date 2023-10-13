@@ -9,17 +9,18 @@
         </id>
         
         
-        <many-to-one name="employee" class="lms.shared.Employee">
-            <column name="user_id" not-null="true" />
+	    <many-to-one name="employee" class="lms.shared.Employee" >
+	         <column name="user_id" not-null="true" />
+	    </many-to-one>
+        
+       <many-to-one name="type" class="lms.shared.utility.LeaveType">
+            <column name="leave_type_id" not-null="true" />
         </many-to-one>
         
-        <property name="type" type="string">
-            <column name="leave_type" length="20" />
-        </property>
-        
-        <property name="status" type="string">
-            <column name="leave_status" length="20" />
-        </property>
+		<property name="status">
+    		<column name="leave_status" length="20" />
+    		<type name="lms.shared.utility.EnumUserType" />
+		</property>
         
          <property name="description" type="string">
             <column name="leave_description" length="100" />

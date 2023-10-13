@@ -1,5 +1,6 @@
 package lms.server;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.context.ApplicationContext;
@@ -32,6 +33,11 @@ private static final long serialVersionUID = 1L;
 	@Override
 	public List<Holiday> getAllHolidays() {
 		return holidayServ.getAllHolidays();
+	}
+
+	@Override
+	public List<Date> listHolidayDates() {
+		return holidayServ.listHolidayDates();
 	}
 
 }
