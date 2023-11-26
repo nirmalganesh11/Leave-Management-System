@@ -1,0 +1,2 @@
+serviceClass: lms.client.asyncservices.HeirarchyServiceClient
+path: 4F41D47284BFECCB6868F54A9B321A79.gwt.rpc

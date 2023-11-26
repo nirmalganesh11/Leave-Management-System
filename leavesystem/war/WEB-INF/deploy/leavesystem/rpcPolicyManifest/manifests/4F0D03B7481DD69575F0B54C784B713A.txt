@@ -1,0 +1,2 @@
+serviceClass: lms.client.asyncservices.HolidayServiceClient
+path: F4F4936302FDDCC17A131124C15BC3C6.gwt.rpc

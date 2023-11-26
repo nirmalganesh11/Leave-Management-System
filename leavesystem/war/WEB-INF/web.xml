@@ -7,7 +7,7 @@
 
  <servlet>
     <servlet-name>authServlet</servlet-name>
-    <servlet-class>lms.server.UserServiceImplServlet</servlet-class>
+    <servlet-class>lms.server.servlet.UserServiceServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>
@@ -17,7 +17,7 @@
   
   <servlet>
     <servlet-name>heirarchyServlet</servlet-name>
-    <servlet-class>lms.server.HeirarchyServlet</servlet-class>
+    <servlet-class>lms.server.servlet.HeirarchyServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>
@@ -28,7 +28,7 @@
   
   <servlet>
     <servlet-name>employeeServlet</servlet-name>
-    <servlet-class>lms.server.EmployeeServlet</servlet-class>
+    <servlet-class>lms.server.servlet.EmployeeServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>
@@ -39,7 +39,7 @@
 
   <servlet>
     <servlet-name>accessControlServlet</servlet-name>
-    <servlet-class>lms.server.AccessControlServlet</servlet-class>
+    <servlet-class>lms.server.servlet.AccessControlServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>
@@ -49,7 +49,7 @@
   
    <servlet>
     <servlet-name>holidayServlet</servlet-name>
-    <servlet-class>lms.server.HolidayServlet</servlet-class>
+    <servlet-class>lms.server.servlet.HolidayServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>
@@ -60,7 +60,7 @@
   
    <servlet>
     <servlet-name>leaveTypeServlet</servlet-name>
-    <servlet-class>lms.server.LeaveTypeServlet</servlet-class>
+    <servlet-class>lms.server.servlet.LeaveTypeServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>
@@ -70,7 +70,7 @@
   
    <servlet>
     <servlet-name>leaveRequestServlet</servlet-name>
-    <servlet-class>lms.server.LeaveRequestServlet</servlet-class>
+    <servlet-class>lms.server.servlet.LeaveRequestServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>
@@ -83,7 +83,10 @@
   
   
   
-  	<context-param>
+  	
+  <!-- 
+  
+  <context-param>
     	<param-name>contextConfigLocation</param-name>
     	<param-value>
     			 classpath:applicationContext.xml
@@ -92,9 +95,18 @@
     			 classpath:springfilters.xml
     			 classpath:securitybeans.xml
     			 classpath:services.xml
+    			 classpath:log4j.xml
     			 
     	</param-value>
 	</context-param>
+  
+   -->
+   	<context-param>
+    	<param-name>contextConfigLocation</param-name>
+    	<param-value>classpath:main/resources/security/*.xml,classpath:main/resources/*.xml</param-value>
+    	
+	</context-param>
+   
   
   <filter>
 		<filter-name>filterChainProxy</filter-name>
@@ -110,20 +122,16 @@
 		<filter-name>filterChainProxy</filter-name> 
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-  
-  	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
-
+	
 	<listener>
 		<listener-class>
 			org.springframework.web.context.request.RequestContextListener</listener-class>
 	</listener>
-
-
-
-
-
+	
+		<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
 
   <welcome-file-list>
     <welcome-file>Leavesystem.html</welcome-file>

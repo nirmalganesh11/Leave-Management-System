@@ -1,9 +1,13 @@
 package lms.shared.utility;
 
-import com.google.gwt.user.client.rpc.IsSerializable;
+//import com.google.gwt.user.client.rpc.IsSerializable;
 
-public class LeaveType implements IsSerializable{
+import lms.shared.framework.domain.PersistantObject;
+
+public class LeaveType extends PersistantObject{
 	
+	private static final long serialVersionUID = 1L;
+
 	private int leaveTypeId;
 	
 	private String leaveTypeName;
@@ -45,6 +49,12 @@ public class LeaveType implements IsSerializable{
 	}
 	public void setDaysCount(int daysCount) {
 		this.daysCount = daysCount;
+	}
+	
+	
+	@Override
+	public void detach() {
+		super.detach();
 	}
 	
 }

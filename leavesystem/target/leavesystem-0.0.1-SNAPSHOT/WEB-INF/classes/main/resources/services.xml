@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:simple="http://cxf.apache.org/simple" xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+        http://cxf.apache.org/simple http://cxf.apache.org/schemas/simple.xsd
+        http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
+        
+        
+    <bean id="userService" class="lms.server.service.UserServiceImpl">
+		<constructor-arg ref="userDao" />
+	</bean>
+	
+	<bean id="heirarchyService" class="lms.server.service.HeirarchyServiceImpl">
+		<constructor-arg ref="companyDao" />
+		<constructor-arg ref="departmentDao" />
+	</bean>
+	
+	   
+    <bean id="employeeService" class="lms.server.service.EmployeeServiceImpl">
+		<constructor-arg ref="employeeDao"/>
+	</bean>
+	
+	<bean id="accessControlService" class="lms.server.service.AccessControlServiceImpl">
+		<constructor-arg ref="roleDao" />
+		<constructor-arg ref="permissionDao" />
+	</bean>
+	
+	 <bean id="holidayService" class="lms.server.service.HolidayServiceImpl">
+		<constructor-arg ref="holidayDao" />
+		<property name="rootdao" ref="templateDao"></property>
+	</bean>
+	
+	 <bean id="leaveTypeService" class="lms.server.service.LeaveTypeServiceImpl">
+		<constructor-arg ref="leaveTypeDao" />
+	</bean>
+	
+	<bean id="leaveRequestService" class="lms.server.service.LeaveRequestServiceImpl">
+		<constructor-arg ref="leaveRequestDao" />
+	</bean>
+	
+	
+	<import resource ="classpath:applicationcontext.xml" />
+ 
+</beans>

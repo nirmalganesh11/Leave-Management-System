@@ -1,12 +1,12 @@
 package lms.shared;
 
-import com.google.gwt.user.client.rpc.IsSerializable;
-
 import lms.shared.heirarchy.Company;
 import lms.shared.heirarchy.Department;
 
-public class Employee extends User implements IsSerializable{
+public class Employee extends User {
 	
+	private static final long serialVersionUID = 1L;
+
 	private int employeeId;
 	
 	private String position;
@@ -82,5 +82,10 @@ public class Employee extends User implements IsSerializable{
 		this.company = company;
 	}
 	
-	
+	@Override
+	public void detach() {
+		super.detach();
+		company.detach();
+		department.detach();
+	}
 }

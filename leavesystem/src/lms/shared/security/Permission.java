@@ -1,24 +1,24 @@
 package lms.shared.security;
 
-import com.google.gwt.user.client.rpc.IsSerializable;
+//import com.google.gwt.user.client.rpc.IsSerializable;
 
-public class Permission implements IsSerializable{
+import lms.shared.framework.domain.PersistantObject;
+
+public class Permission extends PersistantObject{
 	
+
+	private static final long serialVersionUID = 1L;
+
 	private int permissionId;
 	
 	private String permissionName;
-	
-	//remove this 
-	private String permissionDescription;
 	
 	public Permission() {
 		
 	}
 	
-	public Permission(String permissionName,String permissionDescription) {
-		
+	public Permission(String permissionName) {
 		this.permissionName = permissionName;
-		this.permissionDescription = permissionDescription;
 	}
 
 	public int getPermissionId() {
@@ -36,12 +36,10 @@ public class Permission implements IsSerializable{
 	public void setPermissionName(String permissionName) {
 		this.permissionName = permissionName;
 	}
-
-	public String getPermissionDescription() {
-		return permissionDescription;
+	
+	@Override
+	public void detach() {
+		super.detach();
 	}
-
-	public void setPermissionDescription(String permissionDescription) {
-		this.permissionDescription = permissionDescription;
-	}
+	
 }

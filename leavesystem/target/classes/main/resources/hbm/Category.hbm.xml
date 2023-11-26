@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+        
+ <hibernate-mapping>
+ 
+ 	<class name ="lms.shared.framework.domain.Category" table ="ST_CATEGORY">
+ 		<cache usage ="read-write" include="all"
+ 			region ="lms.shared.framework.domain.Category" />
+ 			
+ 	  <id name="id" type="long">
+            <column name="ID"/>
+            <generator class="native"/>
+        </id>
+ 		
+ 		
+ 		<property name="name" type ="string">
+ 			<column name = "NAME" length ="50" />
+ 		</property>
+ 		
+ 		<list name ="lookups" table ="ST_LOOKUP" cascade="all"
+ 			lazy="false" fetch="subselect" inverse="false">
+ 				<cache usage ="read-write" include="all" />
+ 				<key column ="CATEGORY" not-null ="false"/>
+ 				<index column="POSITION" />
+ 				<one-to-many class="lms.shared.framework.domain.Lookup" />
+ 		</list>
+
+ 	</class>
+ 
+ </hibernate-mapping>

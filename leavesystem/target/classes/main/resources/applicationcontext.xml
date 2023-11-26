@@ -10,49 +10,56 @@
         http://cxf.apache.org/simple http://cxf.apache.org/schemas/simple.xsd
         http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
        
-    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+   <!--   <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
     	<property name="driverClassName" value="org.postgresql.Driver" />
     	<property name="url" value="jdbc:postgresql://localhost:5432/leavesystem" />
     	<property name="username" value="nirmalganesh11" />
    		<property name="password" value="celkonganesh" />
 
-    	<!-- Connection Pool Settings -->
+    	 Connection Pool Settings 
     	<property name="initialSize" value="5" />
     	<property name="maxTotal" value="20" />
     	<property name="maxIdle" value="10" />
     	<property name="minIdle" value="5" />
     	<property name="validationQuery" value="SELECT 1" />
     	<property name="testOnBorrow" value="true" />
+	</bean> -->
+	
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+	    <property name="driverClass" value="org.postgresql.Driver" />
+	    <property name="jdbcUrl" value="jdbc:postgresql://localhost:5432/leavesystem" />
+	    <property name="user" value="nirmalganesh11" />
+	    <property name="password" value="celkonganesh" />
+	   
+	
+	    <!-- Connection Pool Settings -->
+	    <property name="initialPoolSize" value="5" />
+	    <property name="maxPoolSize" value="20" />
+	    <property name="maxIdleTime" value="10" />
+	    <property name="minPoolSize" value="5" />
+	    <property name="preferredTestQuery" value="SELECT 1" />
+	    <property name="testConnectionOnCheckout" value="true" />
 	</bean>
-    
-    
 
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="packagesToScan" value="lms.shared" /> 
-		<property name="mappingResources">
-			<list>
-				<value>User.hbm.xml</value>
-				<value>Role.hbm.xml</value>
-				<value>Permission.hbm.xml</value>
-				<value>company.hbm.xml</value>
-				<value>department.hbm.xml</value>
-				<value>employee.hbm.xml</value>
-				<value>Holiday.hbm.xml</value>
-				<value>LeaveType.hbm.xml</value>
-				<value>LeaveRequest.hbm.xml</value>
-			</list>
-	</property>
 		
-	<property name="hibernateProperties">
-			<props>
-				
-				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
-				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.type_contributors">lms.shared.utility.EnumUserType</prop>
-			</props>
+		<property name="mappingDirectoryLocations">
+			<list>
+				<value>classpath:main/resources/hbm</value>
+			</list>
+		</property>
+		
+		<property name="hibernateProperties">
+				<props>
+					
+					<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+					<prop key="hibernate.hbm2ddl.auto">update</prop>
+					<prop key="hibernate.show_sql">true</prop>
+					<prop key="hibernate.type_contributors">lms.shared.utility.EnumUserType</prop>
+				</props>
 		</property> 
 	</bean>
 		
@@ -60,41 +67,48 @@
 		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-       
-   	<bean id="userDao" class="lms.server.daopack.UserDao">
+    
+    <bean id="templateDao" class ="lms.server.framework.dao.TemplateRootDaoImpl">
+    	<property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    
+   	<bean id="userDao" class="lms.server.dao.UserDaoImpl">
 		  <constructor-arg ref="sessionFactory" />
 	</bean>
 	
-	<bean id="companyDao" class="lms.server.daopack.CompanyDao">
+	<bean id="companyDao" class="lms.server.dao.CompanyDaoImpl">
 		  <constructor-arg ref="sessionFactory" />
 	</bean>
 	
-	<bean id="departmentDao" class="lms.server.daopack.DepartmentDao">
+	<bean id="departmentDao" class="lms.server.dao.DepartmentDaoImpl">
 		  <constructor-arg ref="sessionFactory" />
 	</bean>
 	
-	<bean id="employeeDao" class="lms.server.daopack.EmployeeDao">
+	<bean id="employeeDao" class="lms.server.dao.EmployeeDaoImpl">
 		  <constructor-arg ref="sessionFactory" />
 	</bean>
 	
-	<bean id="roleDao" class="lms.server.daopack.RoleDao">
+	<bean id="roleDao" class="lms.server.dao.RoleDaoImpl">
 		  <constructor-arg ref="sessionFactory" />
 	</bean>
 	
-	<bean id="permissionDao" class="lms.server.daopack.PermissionDao">
+	<bean id="permissionDao" class="lms.server.dao.PermissionDaoImpl">
 		  <constructor-arg ref="sessionFactory" />
 	</bean>
-	<bean id="holidayDao" class="lms.server.daopack.HolidayDao">
-		  <constructor-arg ref="sessionFactory" />
-	</bean>
-	
-	<bean id="leaveTypeDao" class="lms.server.daopack.LeaveTypeDao">
+	<bean id="holidayDao" class="lms.server.dao.HolidayDaoImpl">
 		  <constructor-arg ref="sessionFactory" />
 	</bean>
 	
-	<bean id="leaveRequestDao" class="lms.server.daopack.LeaveRequestDao">
+	<bean id="leaveTypeDao" class="lms.server.dao.LeaveTypeDaoImpl">
 		  <constructor-arg ref="sessionFactory" />
 	</bean>
+	
+	<bean id="leaveRequestDao" class="lms.server.dao.LeaveRequestDaoImpl">
+		  <constructor-arg ref="sessionFactory" />
+	</bean>
+	
+	
+	
 	
   </beans>
         

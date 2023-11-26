@@ -1,0 +1,2 @@
+serviceClass: lms.client.asyncservices.LeaveTypeServiceClient
+path: F322DDBA8D97B696DFCC24A703C6C222.gwt.rpc

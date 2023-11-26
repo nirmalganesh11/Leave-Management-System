@@ -4,13 +4,18 @@ import java.util.List;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
 
-public class Role implements IsSerializable{
+import lms.shared.framework.domain.PersistantObject;
+
+public class Role extends PersistantObject{
 	
+
+	private static final long serialVersionUID = 1L;
+
 	private int roleId;
 	
 	private String roleName;
 
-	
+
 	private List<Permission> permissions;
 	
 	
@@ -46,6 +51,12 @@ public class Role implements IsSerializable{
 
 	public void setPermissions(List<Permission> permissions) {
 		this.permissions = permissions;
+	}
+	
+	@Override
+	public void detach() {
+		super.detach();
+		permissions = detachList(permissions);
 	}
 
 }

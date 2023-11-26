@@ -3,24 +3,17 @@ package lms.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.logical.shared.ValueChangeEvent;
-import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.History;
-
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.VerticalPanel;
 
-import lms.client.admin.AdminEntryPoint;
-import lms.client.clientservices.UserServiceClient;
-import lms.client.clientservices.UserServiceClientAsync;
-import lms.client.security.LoginView;
-import lms.client.staff.StaffEntryPoint;
-import lms.shared.User;
+import lms.client.asyncservices.UserServiceClient;
+import lms.client.asyncservices.UserServiceClientAsync;
+import lms.client.ui.admin.AdminEntryPoint;
+import lms.client.ui.security.LoginView;
+import lms.client.ui.staff.StaffEntryPoint;
+
 
 
 
@@ -93,15 +86,9 @@ public class LeaveManagementSystem implements EntryPoint{
 		
 	}
 	public void showLoginView() {
-		
-		
-		
-		RootPanel.get().addStyleName("login-page");
-		
-		
 
-		
-		
+		RootPanel.get().addStyleName("login-page");
+
 		LoginView jslogin = new LoginView();
 	    jslogin.addStyleName("material-card-login");
 	    jslogin.getUsernameTextBox().addStyleName("material-textbox");

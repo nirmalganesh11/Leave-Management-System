@@ -1,0 +1,2 @@
+serviceClass: lms.client.asyncservices.EmployeeServiceClient
+path: 0F8C541D72B054B3528983B0E5CB3981.gwt.rpc

@@ -2,12 +2,14 @@ package lms.shared.utility;
 
 import java.util.Date;
 
-import com.google.gwt.user.client.rpc.IsSerializable;
-
 import lms.shared.Employee;
+import lms.shared.framework.domain.Lookup;
+import lms.shared.framework.domain.PersistantObject;
 
-public class LeaveRequest implements IsSerializable {
+public class LeaveRequest extends PersistantObject {
 	
+	private static final long serialVersionUID = 1L;
+
 	private int requestId;
 	
 	private Employee employee;
@@ -16,6 +18,8 @@ public class LeaveRequest implements IsSerializable {
 	
 	private LeaveStatus status;
 	
+	private Lookup leaveStatus;
+	
 	private Date startDate;
 	
 	private Date endDate;
@@ -23,6 +27,8 @@ public class LeaveRequest implements IsSerializable {
 	private String description;
 	
 	private int countLeaves;
+	
+	
 	
 	public LeaveRequest() {
 		
@@ -90,6 +96,20 @@ public class LeaveRequest implements IsSerializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Lookup getLeaveStatus() {
+		return leaveStatus;
+	}
+
+	public void setLeaveStatus(Lookup leaveStatus) {
+		this.leaveStatus = leaveStatus;
+	}
+	@Override
+	public void detach() {
+		super.detach();
+		type.detach();
+		employee.detach();
 	}
 	
 }

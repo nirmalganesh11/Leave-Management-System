@@ -1,0 +1,2 @@
+serviceClass: lms.client.asyncservices.AccessControlServiceClient
+path: D0258FD600C9A11EE61FFB8239C86107.gwt.rpc

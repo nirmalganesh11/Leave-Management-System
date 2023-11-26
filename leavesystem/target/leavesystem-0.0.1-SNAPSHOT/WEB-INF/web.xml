@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+              http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5"
+         xmlns="http://java.sun.com/xml/ns/javaee">
+
+ <servlet>
+    <servlet-name>authServlet</servlet-name>
+    <servlet-class>lms.server.servlet.UserServiceServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>authServlet</servlet-name>
+    <url-pattern>/leavesystem/auth</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>heirarchyServlet</servlet-name>
+    <servlet-class>lms.server.servlet.HeirarchyServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>heirarchyServlet</servlet-name>
+    <url-pattern>/leavesystem/ladder</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>employeeServlet</servlet-name>
+    <servlet-class>lms.server.servlet.EmployeeServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>employeeServlet</servlet-name>
+    <url-pattern>/leavesystem/emp</url-pattern>
+  </servlet-mapping>
+
+
+  <servlet>
+    <servlet-name>accessControlServlet</servlet-name>
+    <servlet-class>lms.server.servlet.AccessControlServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>accessControlServlet</servlet-name>
+    <url-pattern>/leavesystem/access</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>holidayServlet</servlet-name>
+    <servlet-class>lms.server.servlet.HolidayServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>holidayServlet</servlet-name>
+    <url-pattern>/leavesystem/holiday</url-pattern>
+  </servlet-mapping>
+  
+  
+   <servlet>
+    <servlet-name>leaveTypeServlet</servlet-name>
+    <servlet-class>lms.server.servlet.LeaveTypeServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>leaveTypeServlet</servlet-name>
+    <url-pattern>/leavesystem/leavetype</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>leaveRequestServlet</servlet-name>
+    <servlet-class>lms.server.servlet.LeaveRequestServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>leaveRequestServlet</servlet-name>
+    <url-pattern>/leavesystem/request</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+  
+  
+  	
+  <!-- 
+  
+  <context-param>
+    	<param-name>contextConfigLocation</param-name>
+    	<param-value>
+    			 classpath:applicationContext.xml
+    			 classpath:filterchainproxy.xml
+    			 classpath:security-context.xml
+    			 classpath:springfilters.xml
+    			 classpath:securitybeans.xml
+    			 classpath:services.xml
+    			 classpath:log4j.xml
+    			 
+    	</param-value>
+	</context-param>
+  
+   -->
+   	<context-param>
+    	<param-name>contextConfigLocation</param-name>
+    	<param-value>classpath:main/resources/*.xml,classpath:main/resources/security/*.xml</param-value>
+	</context-param>
+   
+  
+  <filter>
+		<filter-name>filterChainProxy</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+		<init-param> 
+			<param-name>targetClass</param-name>
+			<param-value>org.springframework.security.web.FilterChainProxy</param-value>
+		</init-param> 
+	</filter> 
+	
+	
+  <filter-mapping> 
+		<filter-name>filterChainProxy</filter-name> 
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+  
+  
+
+	
+
+  <welcome-file-list>
+    <welcome-file>Leavesystem.html</welcome-file>
+  </welcome-file-list>
+
+</web-app>

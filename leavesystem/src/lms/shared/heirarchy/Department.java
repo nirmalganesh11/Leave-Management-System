@@ -1,8 +1,12 @@
 package lms.shared.heirarchy;
 
-import com.google.gwt.user.client.rpc.IsSerializable;
+//import com.google.gwt.user.client.rpc.IsSerializable;
 
-public class Department implements IsSerializable{
+import lms.shared.framework.domain.PersistantObject;
+
+public class Department extends PersistantObject{
+
+	private static final long serialVersionUID = 1L;
 
 	private int departmentId;
 	
@@ -52,5 +56,11 @@ public class Department implements IsSerializable{
 
 	public void setCompany(Company company) {
 		this.company = company;
+	}
+	
+	@Override
+	public void detach(){
+		super.detach();
+		company.detach();
 	}
 }

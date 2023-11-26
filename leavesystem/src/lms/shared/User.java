@@ -1,18 +1,22 @@
 package lms.shared;
 
-import com.google.gwt.user.client.rpc.IsSerializable;
+//import com.google.gwt.user.client.rpc.IsSerializable;
 
+import lms.shared.framework.domain.PersistantObject;
 import lms.shared.security.Role;
 
-public class User implements IsSerializable{
+public class User extends PersistantObject{
 	
+
+	private static final long serialVersionUID = 1L;
+
 	private int userId;
 	
 	private String username;
 	
 	private String password;
 	
-	private Role role;
+	protected Role role;
 	
 	
 	public User() {
@@ -60,5 +64,11 @@ public class User implements IsSerializable{
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-
+	
+	@Override
+	public void detach() {
+		super.detach();
+		role = (Role) detach(role);
+	}
+	
 }

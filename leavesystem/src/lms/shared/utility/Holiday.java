@@ -2,10 +2,14 @@ package lms.shared.utility;
 
 import java.util.Date;
 
-import com.google.gwt.user.client.rpc.IsSerializable;
+//import com.google.gwt.user.client.rpc.IsSerializable;
 
-public class Holiday implements IsSerializable{
+import lms.shared.framework.domain.PersistantObject;
+
+public class Holiday extends PersistantObject{
 	
+	private static final long serialVersionUID = 1L;
+
 	private int holidayId;
 	
 	private Date holidayDate;

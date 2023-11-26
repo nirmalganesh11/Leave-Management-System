@@ -11,37 +11,37 @@
         http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
         
         
-    <bean id="userService" class="lms.server.serverservices.UserServiceImpl">
+    <bean id="userService" class="lms.server.service.UserServiceImpl">
 		<constructor-arg ref="userDao" />
 	</bean>
 	
-	<bean id="heirarchyService" class="lms.server.serverservices.HeirarchyServiceImpl">
+	<bean id="heirarchyService" class="lms.server.service.HeirarchyServiceImpl">
 		<constructor-arg ref="companyDao" />
 		<constructor-arg ref="departmentDao" />
 	</bean>
 	
 	   
-    <bean id="employeeService" class="lms.server.serverservices.EmployeeServiceImpl">
+    <bean id="employeeService" class="lms.server.service.EmployeeServiceImpl">
 		<constructor-arg ref="employeeDao"/>
 	</bean>
 	
-	<bean id="accessControlService" class="lms.server.serverservices.AccessControlServiceImpl">
+	<bean id="accessControlService" class="lms.server.service.AccessControlServiceImpl">
 		<constructor-arg ref="roleDao" />
 		<constructor-arg ref="permissionDao" />
 	</bean>
 	
-	 <bean id="holidayService" class="lms.server.serverservices.HolidayServiceImpl">
+	 <bean id="holidayService" class="lms.server.service.HolidayServiceImpl">
 		<constructor-arg ref="holidayDao" />
+		<property name="rootdao" ref="templateDao"></property>
 	</bean>
 	
-	 <bean id="leaveTypeService" class="lms.server.serverservices.LeaveTypeServiceImpl">
+	 <bean id="leaveTypeService" class="lms.server.service.LeaveTypeServiceImpl">
 		<constructor-arg ref="leaveTypeDao" />
 	</bean>
 	
-	<bean id="leaveRequestService" class="lms.server.serverservices.LeaveRequestServiceImpl">
+	<bean id="leaveRequestService" class="lms.server.service.LeaveRequestServiceImpl">
 		<constructor-arg ref="leaveRequestDao" />
 	</bean>
-	
 	
 	<import resource ="classpath:applicationcontext.xml" />
  

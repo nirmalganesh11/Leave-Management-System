@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+        
+ <hibernate-mapping>
+ 
+ 	<class name ="lms.shared.framework.domain.Lookup" table ="ST_LOOKUP" abstract ="false" polymorphism ="explicit">
+ 		<cache usage ="read-write" include="all"
+ 			region ="lms.shared.framework.domain.Lookup" />
+ 		
+ 		   <id name="lookupId" type="long">
+            <column name="LOOKUP_ID"/>
+            <generator class="native"/>
+        </id>
+ 		
+ 		<property name="category" type="long" insert ="false" update="false">
+ 			<column name="CATEGORY" />
+ 		</property>
+ 		
+ 		<property name="name" type ="string">
+ 			<column name = "NAME" length ="50" />
+ 		</property>
+ 		
+ 		<property name="description" type="string">
+ 			<column name ="DESCRIPTION" length ="50" />
+ 		</property>
+ 
+ 		
+ 		
+ 	
+ 	
+ 	</class>
+ 
+ 
+ 
+ </hibernate-mapping>

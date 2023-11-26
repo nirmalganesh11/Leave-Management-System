@@ -14,8 +14,6 @@
   
   <dependencies>
 
-   
-	
 	<dependency>
     	<groupId>org.springframework</groupId>
     	<artifactId>spring-core</artifactId>
@@ -63,8 +61,9 @@
       <version>${gwt-material.version}</version>
     </dependency>
     
-    
-    
+	
+
+
     <dependency>
 	    <groupId>org.springframework.security</groupId>
 	    <artifactId>spring-security-core</artifactId>
@@ -76,6 +75,7 @@
 	    <artifactId>spring-security-web</artifactId>
 	    <version>4.2.11.RELEASE</version>
 	</dependency>
+	
 	<dependency>
 	    <groupId>org.springframework.security</groupId>
 	    <artifactId>spring-security-config</artifactId>
@@ -95,21 +95,7 @@
 			<scope>provided</scope>
 		</dependency>
 		
-		
-		<!-- https://mvnrepository.com/artifact/log4j/log4j -->
-	<dependency>
-    	<groupId>log4j</groupId>
-   	 <artifactId>log4j</artifactId>
-   	 <version>1.2.11</version>
-	</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
-	<dependency>
-   		 <groupId>org.apache.logging.log4j</groupId>
-    	<artifactId>log4j-core</artifactId>
-    	<version>2.14.1</version>
-	</dependency>
-	
 	<dependency>
     	<groupId>org.hibernate</groupId>
     	<artifactId>hibernate-core</artifactId>
@@ -140,9 +126,42 @@
 		<version>5.1.5.RELEASE</version>
 	</dependency>
 
+	<dependency>
+	    <groupId>com.mchange</groupId>
+	    <artifactId>c3p0</artifactId>
+	    <version>0.9.5.5</version>
+	</dependency>
+
+		<!-- https://mvnrepository.com/artifact/log4j/log4j -->
+	<dependency>
+	    <groupId>log4j</groupId>
+	    <artifactId>log4j</artifactId>
+	    <version>1.2.17</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>c3p0</groupId>
+		<artifactId>c3p0</artifactId>
+		<version>0.9.1.2</version>
 		
-		
-    
+	</dependency>
+	
+		<!-- https://mvnrepository.com/artifact/org.jresearch.gwt.time/org.jresearch.gwt.time -->
+	<dependency>
+	    <groupId>org.jresearch.gwt.time</groupId>
+	    <artifactId>org.jresearch.gwt.time</artifactId>
+	    <version>2.0.10</version>
+	</dependency>
+
+
+
+	
+
+
+	
+	
+	
+
   </dependencies>
   
   
@@ -150,13 +169,27 @@
   <build>
     <sourceDirectory>src</sourceDirectory>
     <testSourceDirectory>test</testSourceDirectory>
-    <resources>
-      <resource>
-        <directory>src</directory>
-        <excludes>
-          <exclude>**/*.java</exclude>
-        </excludes>
-      </resource>
+		<resources>
+			<resource>
+				<directory>src</directory>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+
+
+			<resource>
+				<directory>${project.basedir}/resources</directory>
+				<filtering>false</filtering>
+			</resource>
+			<!-- Include the existing .html file -->
+			<resource>
+				<directory>${project.basedir}/src</directory>
+				<includes>
+					<include>**/*.gwt.xml</include>
+				</includes>
+    		</resource>
+    		
     </resources>
     <plugins>
       <plugin>
@@ -167,6 +200,33 @@
           <target>1.8</target>
         </configuration>
       </plugin>
+      
+      <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-war-plugin</artifactId>
+      <version>3.3.1</version>
+      <configuration>
+      <webXml>${project.basedir}/war/WEB-INF/web.xml</webXml>
+        <!-- Configure the .html file as a web resource -->
+        <webResources>
+          <resource>
+            <directory>${project.basedir}/war</directory>
+            <includes>
+              <include>**/*.html</include>
+              <include>**/*.css</include>
+              <include>**/*.jar</include>
+              <include>**/*.js</include>
+            </includes>
+          </resource>
+        </webResources>
+      </configuration>
+    </plugin>
+      
+      
+      
+	
+
     </plugins>
+    
   </build>
 </project>

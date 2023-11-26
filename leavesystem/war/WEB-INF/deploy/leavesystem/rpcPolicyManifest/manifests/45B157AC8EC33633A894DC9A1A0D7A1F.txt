@@ -1,0 +1,2 @@
+serviceClass: lms.client.asyncservices.UserServiceClient
+path: E06EA07C221EEDA4F2734BB1A8CE2020.gwt.rpc

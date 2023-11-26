@@ -1,0 +1,42 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="lms.shared.utility">
+
+    <class name="LeaveRequest" table="LEAVE_REQUEST">
+    
+        <id name="requestId" type="int">
+            <column name="request_id" />
+            <generator class="native" />
+        </id>
+        
+        
+	    <many-to-one name="employee" class="lms.shared.Employee" >
+	         <column name="user_id" not-null="true" />
+	    </many-to-one>
+        
+       <many-to-one name="type" class="lms.shared.utility.LeaveType">
+            <column name="leave_type_id" not-null="true" />
+        </many-to-one>
+        
+		<property name="status">
+    		<column name="leave_status" length="20" />
+    		<type name="lms.shared.utility.EnumUserType" />
+		</property>
+        
+         <property name="description" type="string">
+            <column name="leave_description" length="100" />
+        </property>
+        
+        <property name="startDate" type="date">
+            <column name="start_date" />
+        </property>
+        
+        <property name="endDate" type="date">
+            <column name="end_date" />
+        </property>
+        
+        <property name="countLeaves" type="int">
+            <column name="leave_count" />
+        </property>
+        
+    </class>
+</hibernate-mapping>
