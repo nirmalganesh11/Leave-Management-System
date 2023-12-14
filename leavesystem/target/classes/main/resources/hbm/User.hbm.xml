@@ -17,7 +17,7 @@
             <column name="password"/>
         </property>
         
-        <many-to-one name="role" class="lms.shared.security.Role" column="role_id" cascade="all"/>
+        <many-to-one name="role" class="lms.shared.security.Role" column="role_id"/>
         
     </class>
 </hibernate-mapping>

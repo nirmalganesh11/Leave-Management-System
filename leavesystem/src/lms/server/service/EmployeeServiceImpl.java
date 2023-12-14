@@ -78,4 +78,9 @@ public class EmployeeServiceImpl implements EmployeeService {
             return new Employee();
         }
     }
+
+	@Override
+	public String deleteEmployee(int userId) {
+		return empdao.deleteEmployee(userId);
+	}
 }

@@ -10,6 +10,8 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import gwt.material.design.client.constants.IconType;
 import gwt.material.design.client.ui.MaterialLink;
 import gwt.material.design.client.ui.MaterialNavBar;
+import lms.client.eventbus.AppEventBus;
+import lms.client.eventbus.DeleteEmployeeEvent;
 
 public class EmployeeActionsPage extends Composite {
 	
@@ -42,6 +44,14 @@ public class EmployeeActionsPage extends Composite {
         saveLink.setIconType(IconType.SAVE);
         backToTableLink.setIconType(IconType.FLIP_TO_BACK);
         
+        deleteLink.addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+                DeleteEmployeeEvent deleteEvent = new DeleteEmployeeEvent();
+                AppEventBus.fireEvent(deleteEvent);
+            }
+        });
+
         
         navBar.add(addLink);
         navBar.add(deleteLink);

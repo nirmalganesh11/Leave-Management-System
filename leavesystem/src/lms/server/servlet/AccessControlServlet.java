@@ -21,7 +21,7 @@ public class AccessControlServlet extends  RemoteServiceServlet implements Acces
 	
 	
 	public AccessControlServlet(){
-		context = new ClassPathXmlApplicationContext("services.xml");
+		context = ApplicationContextListener.appContext;
 		accServ = context.getBean(AccessControlService.class);
 	}
 	

@@ -96,6 +96,7 @@ public class LoginView extends Composite implements ValueChangeHandler<String> {
 				encoded = encodeBase64(credentials);
 				
 				makeRequestToLogin(encoded);
+				//saveEmployee();
 											
 			}
         	
@@ -167,7 +168,7 @@ public class LoginView extends Composite implements ValueChangeHandler<String> {
     
     public void makeRequestToLogin(String encoded) {
  	   
-        String url = "/leavemanagementsystem/auth";
+        String url = "/leavesystem/auth";
         RequestBuilder requestBuilder = new RequestBuilder(RequestBuilder.GET, url);
         requestBuilder.setHeader("Authorization", "Basic " + encoded);
 
@@ -191,7 +192,7 @@ public class LoginView extends Composite implements ValueChangeHandler<String> {
                 @Override
                 public void onError(Request request, Throwable exception) {
                 	logger.info("Request Error: " + exception.getMessage());
-                	//logger.e
+                	
                 }
             });
         } catch (RequestException e) {
@@ -249,24 +250,24 @@ public class LoginView extends Composite implements ValueChangeHandler<String> {
     
     public void saveEmployee() {
     	List<Permission> permList = new ArrayList<Permission>();
-    	Permission p1 = new Permission("adminPermission");
+    	Permission p1 = new Permission("staff  permission wave Permission");
     	permList.add(p1);
     	
-    	Role newRole = new Role("ROLE_STAFF",permList);
-    	
+    	Role newRole = new Role("ROLE_ADMIN",permList);
+    	newRole.setRoleId(305);
     	Company newCompany = new Company("second company","second company description");
-    	
+    	newCompany.setCompanyId(307);
     	Department dp = new Department("second department","second department description",newCompany);
-    	
+    	dp.setDepartmentId(2);
     	Employee emp = new Employee();
     	
-    	emp.setUsername("staff");
-    	emp.setPassword("staff");
+    	emp.setUsername("admin");
+    	emp.setPassword("admin");
     	emp.setRole(newRole);
-    	emp.setFirstName("staff first name");
+    	emp.setFirstName("admin first name");
     	emp.setCompany(newCompany);
     	emp.setDepartment(dp);
-    	emp.setPosition("staff");
+    	emp.setPosition("admin");
     	
     	empServ.saveEmployee(emp, new AsyncCallback<String>() {
 

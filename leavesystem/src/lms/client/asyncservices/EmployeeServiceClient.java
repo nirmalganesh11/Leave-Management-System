@@ -16,5 +16,10 @@ public interface EmployeeServiceClient extends RemoteService {
 	List<Employee> getAllEmployees();
 	
 	Employee getEmployee(int userId);
+	
+	String deleteEmployee(int userId);
+	
+	List<Employee> getOnLeaveEmployees();
+	
 
 }

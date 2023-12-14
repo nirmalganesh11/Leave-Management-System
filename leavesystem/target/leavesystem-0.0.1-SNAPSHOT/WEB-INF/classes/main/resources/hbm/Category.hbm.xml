@@ -25,12 +25,7 @@
  				<index column="POSITION" />
  				<one-to-many class="lms.shared.framework.domain.Lookup" />
  		</list>
- 		
- 		
- 	
- 	
+
  	</class>
- 
- 
  
  </hibernate-mapping>

@@ -11,6 +11,7 @@ import org.hibernate.FetchMode;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.sql.JoinType;
 import org.springframework.orm.hibernate5.HibernateCallback;
@@ -118,6 +119,35 @@ public class EmployeeDaoImpl extends CommonCode {
 	        });
 
 	}
+	
+	public String deleteEmployee(int userId) {
+		logger.info("added this");
+		 String resultMessage;
+	        try (Session session = factory.openSession()) {
+	            Transaction transaction = session.beginTransaction();
 
+	            try {
+	                // Load the employee entity by its ID
+	                Employee employeeToDelete = session.get(Employee.class, userId);
 
+	                if (employeeToDelete != null) {
+	                    // Delete the entity
+	                    session.delete(employeeToDelete);
+	                    resultMessage = "Employee deleted successfully.";
+	                } else {
+	                    resultMessage = "Employee with ID " + userId + " not found.";
+	                }
+
+	                transaction.commit();
+	            } catch (Exception e) {
+	                transaction.rollback();
+	                resultMessage = "Error deleting employee: " + e.getMessage();
+	            }
+	        }
+	        return resultMessage;
+	    }
+		
 }
+
+
+

@@ -47,6 +47,23 @@ public abstract class CommonCode {
 	    }
 	   
 	}
+	
+	public <T> String updateEntity(T entity, SessionFactory factory) {
+	    Session session = factory.openSession();
+	    Transaction tx = null;
+	    try {
+	        tx = session.beginTransaction();
+	        session.update(entity);
+	        tx.commit();
+	        return "Entity updated successfully.";
+	    } catch (Exception e) {
+	        if (tx != null) tx.rollback();
+	        e.printStackTrace();
+	        return "Error updating entity.";
+	    } finally {
+	        session.close();
+	    }
+	}
 
 
 }

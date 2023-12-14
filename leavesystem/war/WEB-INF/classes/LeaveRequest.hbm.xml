@@ -7,8 +7,7 @@
             <column name="request_id" />
             <generator class="native" />
         </id>
-        
-        
+       
 	    <many-to-one name="employee" class="lms.shared.Employee" >
 	         <column name="user_id" not-null="true" />
 	    </many-to-one>
@@ -17,11 +16,11 @@
             <column name="leave_type_id" not-null="true" />
         </many-to-one>
         
-		<property name="status">
-    		<column name="leave_status" length="20" />
-    		<type name="lms.shared.utility.EnumUserType" />
-		</property>
+         <many-to-one name="leaveStatus" class="lms.shared.framework.domain.Lookup" cascade="all">
+            <column name="LOOKUP_ID" not-null="true"  />
+        </many-to-one>
         
+	
          <property name="description" type="string">
             <column name="leave_description" length="100" />
         </property>
@@ -38,7 +37,6 @@
             <column name="leave_count" />
         </property>
         
-       
-        
+   
     </class>
 </hibernate-mapping>

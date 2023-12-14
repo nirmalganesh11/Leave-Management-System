@@ -1,9 +1,2 @@
 # Module leavesystem
 # RPC service class, partial path of RPC policy file
-lms.client.asyncservices.LeaveTypeServiceClient, F322DDBA8D97B696DFCC24A703C6C222.gwt.rpc
-lms.client.asyncservices.EmployeeServiceClient, 0F8C541D72B054B3528983B0E5CB3981.gwt.rpc
-lms.client.asyncservices.UserServiceClient, E06EA07C221EEDA4F2734BB1A8CE2020.gwt.rpc
-lms.client.asyncservices.HolidayServiceClient, F4F4936302FDDCC17A131124C15BC3C6.gwt.rpc
-lms.client.asyncservices.HeirarchyServiceClient, 4F41D47284BFECCB6868F54A9B321A79.gwt.rpc
-lms.client.asyncservices.LeaveRequestServiceClient, 312D70E1E78A8A53185E56A3D2139D16.gwt.rpc
-lms.client.asyncservices.AccessControlServiceClient, D0258FD600C9A11EE61FFB8239C86107.gwt.rpc

@@ -13,14 +13,14 @@ import gwt.material.design.client.constants.IconType;
 import gwt.material.design.client.ui.MaterialButton;
 import gwt.material.design.client.ui.MaterialLink;
 
-class ButtonCell extends AbstractCell<String> {
+public class ButtonCell extends AbstractCell<String> {
     @Override
     public void render(Context context, String value, SafeHtmlBuilder sb) {
         HorizontalPanel panel = new HorizontalPanel();
         panel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
         panel.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
 
-        MaterialLink link = new MaterialLink("boy");
+        MaterialLink link = new MaterialLink("link");
         
         
         link.setIconType(IconType.BUSINESS);

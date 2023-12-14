@@ -1,0 +1,31 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="lms.shared.utility">
+
+    <class name="Message" table="MESSAGE">
+        <id name="messageId" type="long">
+            <column name="message_id" />
+            <generator class="native" />
+        </id>
+
+        <property name="subject" type="string">
+            <column name="subject" length="255" />
+        </property>
+
+        <property name="description" type="string">
+            <column name="description" length="1000" />
+        </property>
+
+        <!-- Many-to-one association with Role -->
+        <many-to-one name="role" class="lms.shared.security.Role" fetch="select">
+            <column name="role_id" not-null="true" />
+        </many-to-one>
+
+        <!-- Many-to-one association with Employee -->
+        <many-to-one name="employee" class="lms.shared.Employee" fetch="select">
+            <column name="user_id" not-null="true" />
+        </many-to-one>
+
+    </class>
+
+</hibernate-mapping>

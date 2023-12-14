@@ -17,6 +17,15 @@ public interface LeaveRequestServiceClient extends RemoteService {
 	
 	int countLeaveDays(Date startDate, Date endDate, List<Date> holidayDates);
 	
+	List<LeaveRequest> getRequestsByUserId(int userId);
+	
+	
+	String changeRequestStatus(int requestId,String status);
+	
+	List<LeaveRequest> getAllPendingRequests();
+	
+	List<LeaveRequest> getAllRequestHistory();
 	//List<LeaveRequest> getUserRequests(int userId);
+
 	
 }

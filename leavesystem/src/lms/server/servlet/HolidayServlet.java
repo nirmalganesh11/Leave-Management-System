@@ -11,7 +11,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import lms.client.asyncservices.HolidayServiceClient;
 import lms.server.api.HolidayService;
-
+import lms.server.framework.dao.ApplicationContextListener;
 import lms.shared.utility.Holiday;
 
 public class HolidayServlet extends RemoteServiceServlet implements HolidayServiceClient{
@@ -24,7 +24,7 @@ public class HolidayServlet extends RemoteServiceServlet implements HolidayServi
 	
 	
 	public HolidayServlet(){
-		context = new ClassPathXmlApplicationContext("services.xml");
+		context = ApplicationContextListener.appContext;
 		holidayServ = context.getBean(HolidayService.class);
 	}
 	

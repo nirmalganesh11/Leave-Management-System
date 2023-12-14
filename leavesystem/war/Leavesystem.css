@@ -87,16 +87,26 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 .material-card-request {
-    width: 1200px;
+    width: 1000px;
     margin: 0 auto;
     padding: 20px;
     text-align: left;
     background-color: rgb(197, 251, 252);
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    margin-left:100px;
+    margin-left:30px;
 }
 .material-card-scrollpanel {
+    width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: left;
+    background-color: rgb(197, 251, 252);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.material-card-onleave {
     width: 500px;
     margin: 0 auto;
     padding: 20px;
@@ -251,8 +261,7 @@ body {
 }
 .dashboard-style{
 	 background-color: lightgrey; /* Darker blue on hover */
-	
-	
+
 }
 
 
@@ -360,5 +369,24 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+
+.customButtonStyle {
+    z-index: 1100;  /* Adjust the value based on your needs */
+    /* Add other styling properties as needed */
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text color */
+    padding: 10px 20px; /* Padding */
+    border: none; /* No border */
+    text-align: center; /* Center text */
+    text-decoration: none; /* No text decoration */
+    display: inline-block; /* Display as inline-block */
+    font-size: 16px; /* Font size */
+    margin: 4px 2px; /* Margin */
+    cursor: pointer; /* Cursor pointer */
+    border-radius: 4px; /* Border radius */
+}
+.customButtonStyle:hover{
+	background:"#ccc";
+}
 
 

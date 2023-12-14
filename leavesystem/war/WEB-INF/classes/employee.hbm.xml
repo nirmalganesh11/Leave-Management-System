@@ -23,7 +23,7 @@
   
   	    	
       	  <!-- Add other properties specific to Employee -->
-        <many-to-one name="department" class="lms.shared.heirarchy.Department" cascade="all" fetch="select">
+        <many-to-one name="department" class="lms.shared.heirarchy.Department" fetch="select">
             <column name="department_id" />
         </many-to-one>
         

@@ -15,20 +15,26 @@ import gwt.material.design.client.ui.MaterialLink;
 import gwt.material.design.client.ui.MaterialNavBar;
 import lms.client.asyncservices.UserServiceClient;
 import lms.client.asyncservices.UserServiceClientAsync;
-import lms.client.ui.admin.pages.CompanyListPage;
 import lms.client.ui.admin.pages.CompanyPage;
-import lms.client.ui.admin.pages.DepartmentListPage;
 import lms.client.ui.admin.pages.DepartmentPage;
 import lms.client.ui.admin.pages.EmployeeActionsPage;
-import lms.client.ui.admin.pages.EmployeeListPage;
 import lms.client.ui.admin.pages.EmployeePage;
-import lms.client.ui.admin.pages.HolidayListPage;
 import lms.client.ui.admin.pages.HolidayPage;
-import lms.client.ui.admin.pages.LeaveRequestListPage;
-import lms.client.ui.admin.pages.LeaveTypeListPage;
+import lms.client.ui.admin.pages.LeaveRequestActionsPage;
 import lms.client.ui.admin.pages.LeaveTypePage;
+import lms.client.ui.admin.pages.MessageActionsPage;
+import lms.client.ui.admin.pages.MessageSendPage;
+import lms.client.ui.admin.pages.listpages.CompanyListPage;
+import lms.client.ui.admin.pages.listpages.DepartmentListPage;
+import lms.client.ui.admin.pages.listpages.EmployeeListPage;
+import lms.client.ui.admin.pages.listpages.HistoryRequests;
+import lms.client.ui.admin.pages.listpages.HolidayListPage;
+import lms.client.ui.admin.pages.listpages.LeaveRequestListPage;
+import lms.client.ui.admin.pages.listpages.LeaveTypeListPage;
+import lms.client.ui.admin.pages.listpages.OnLeaveListPage;
 //import lms.shared.User;
 import lms.client.ui.security.LoginView;
+import lms.client.ui.staff.pages.listpages.LeaveRequestListPageStaff;
 
 public class AdminPageHandler extends VerticalPanel {
 	
@@ -47,6 +53,11 @@ public class AdminPageHandler extends VerticalPanel {
     EmployeePage ep = new EmployeePage();
     EmployeeActionsPage eapage = new EmployeeActionsPage();
     EmployeeListPage eppage = new EmployeeListPage();
+    int panelCounter =0;
+    MessageActionsPage mapage = new MessageActionsPage();
+    
+    
+    LeaveRequestActionsPage lraPage = new LeaveRequestActionsPage();
     
     public void createAdminDashboard() {
     	
@@ -99,25 +110,31 @@ public class AdminPageHandler extends VerticalPanel {
 	    ep.getCreateButton().addStyleName("material-button");
 
 	    eapage.addStyleName("material-card-actions");
+	    lraPage.addStyleName("material-card-actions");
+	    mapage.addStyleName("material-card-actions");
 
 	    eppage.addStyleName("material-card-employee");
+	    
+	    
+	    navBar.add(leavesLink);
+	    
+	    navBar.add(previousRequests);
         
         navBar.add(onLeaveLink);
-       
-        navBar.add(departmentLink);
         
         navBar.add(employeeLink);
-       
-        navBar.add(leavesLink);
+
+        navBar.add(messageLink);
+        
         
         navBar.add(leaveTypesLink);
         
         navBar.add(holidaysLink);
        
-      
-        navBar.add(messageLink);
+        navBar.add(departmentLink);
+        
        
-        navBar.add(previousRequests);
+        
 
         navBar.add(logoutLink);
         
@@ -133,10 +150,14 @@ public class AdminPageHandler extends VerticalPanel {
 			@Override
 			public void onClick(ClickEvent event) {
 				
+				changePanel.clear();
+				OnLeaveListPage ol = new OnLeaveListPage();
+				
+			    ol.addStyleName("material-card-onleave");
+				changePanel.add(ol);
 			
 			    
-			    changePanel.clear();
-
+			   
 			    
 			    
 			}
@@ -247,6 +268,8 @@ public class AdminPageHandler extends VerticalPanel {
 			    changePanel.clear();
 			    changePanel.setSpacing(20);
 			    changePanel.add(eapage);
+			    eppage = new EmployeeListPage();
+			    eppage.addStyleName("material-card-employee");
 			    changePanel.add(eppage);
 			    //changePanel.add(ep);
 			    
@@ -263,10 +286,18 @@ public class AdminPageHandler extends VerticalPanel {
 					@Override
 					public void onClick(ClickEvent event) {
 						//Window.alert("working");
-					    changePanel.clear();
-					    changePanel.setSpacing(20);
-					    changePanel.add(eapage);
-					    changePanel.add(eppage);
+//					    changePanel.clear();
+//					    changePanel.setSpacing(20);
+//					    changePanel.add(eapage);
+//					    changePanel.add(eppage);
+					    
+//					    changePanel.clear();
+					    changePanel.remove(1);
+					    EmployeeListPage eppageInternal = new EmployeeListPage();
+					    eppageInternal.addStyleName("material-card-employee");
+					    changePanel.add(eppageInternal);
+					    
+					    
 					}
 			    });
 			    
@@ -343,12 +374,18 @@ public class AdminPageHandler extends VerticalPanel {
 
 			@Override
 			public void onClick(ClickEvent event) {
+				
+				
+				
 				LeaveRequestListPage lrpage = new LeaveRequestListPage();
 			    lrpage.addStyleName("material-card-request");
 			    
 			    changePanel.clear();
+			    changePanel.setSpacing(10);
+			    changePanel.add(lraPage);
 				changePanel.add(lrpage);
 			    
+
 			    
 			}
         	
@@ -360,6 +397,27 @@ public class AdminPageHandler extends VerticalPanel {
 			@Override
 			public void onClick(ClickEvent event) {
 				changePanel.clear();
+				
+				changePanel.setSpacing(20);
+				changePanel.add(mapage);
+				 
+				mapage.getSendLink().addClickHandler(new ClickHandler() {
+					
+					@Override
+					public void onClick(ClickEvent event) {
+	
+							if(changePanel.getWidgetCount()<=1) {
+								MessageSendPage sendPage = new MessageSendPage();
+								sendPage.addStyleName("material-card-leavetype");
+								changePanel.add(sendPage);
+							}
+							
+					}
+					
+				});
+				
+				 
+				
 			}
         	
         	
@@ -369,15 +427,34 @@ public class AdminPageHandler extends VerticalPanel {
 
 			@Override
 			public void onClick(ClickEvent event) {
-				changePanel.clear();
+				HistoryRequests lrpage = new HistoryRequests();
+			    lrpage.addStyleName("material-card-request");
+			    
+			    changePanel.clear();
+				changePanel.add(lrpage);
 			}
         	
         });
         
         fullbarPanel.setSpacing(10);
         
-        changePanel.setSpacing(75);
+        
+        
+        
+
+		LeaveRequestListPage lrpage = new LeaveRequestListPage();
+	    lrpage.addStyleName("material-card-request");
+	    
+	    changePanel.clear();
+	    changePanel.setSpacing(10);
+	    changePanel.add(lraPage);
+		changePanel.add(lrpage);
+		
+//        changePanel.setSpacing(75);
         fullbarPanel.add(navBarPanel);
+//        LeaveRequestListPage lrpage = new LeaveRequestListPage();
+//	    lrpage.addStyleName("material-card-request");
+//	    changePanel.add(lrpage);
         //fullbarPanel.add(vertChangePanel);
         fullbarPanel.add(changePanel);
         RootPanel.get().add(fullbarPanel);

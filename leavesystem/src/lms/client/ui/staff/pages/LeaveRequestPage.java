@@ -11,16 +11,20 @@ import lms.client.asyncservices.LeaveRequestServiceClient;
 import lms.client.asyncservices.LeaveRequestServiceClientAsync;
 import lms.client.asyncservices.LeaveTypeServiceClient;
 import lms.client.asyncservices.LeaveTypeServiceClientAsync;
+import lms.client.asyncservices.LookupServiceClient;
+import lms.client.asyncservices.LookupServiceClientAsync;
 import lms.client.asyncservices.UserServiceClient;
 import lms.client.asyncservices.UserServiceClientAsync;
 import lms.shared.Employee;
 import lms.shared.User;
-
+import lms.shared.framework.domain.Category;
+import lms.shared.framework.domain.Lookup;
 import lms.shared.utility.LeaveRequest;
 import lms.shared.utility.LeaveStatus;
 import lms.shared.utility.LeaveType;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -44,8 +48,11 @@ public class LeaveRequestPage extends Composite {
 	EmployeeServiceClientAsync empServ = GWT.create(EmployeeServiceClient.class);
 	HolidayServiceClientAsync holServ = GWT.create(HolidayServiceClient.class);
 	
+	LookupServiceClientAsync lookServ = GWT.create(LookupServiceClient.class);
+	
 	private List<LeaveType> listOfTypes  = new ArrayList<>();
 	private List<Date> listOfHolidayDates = new ArrayList<>();
+	private List<Lookup> requestStatusList = new ArrayList<>();
 	
 	private Employee presentEmployee;
 	private LeaveType selectedLeaveType;
@@ -62,7 +69,8 @@ public class LeaveRequestPage extends Composite {
     private DateBox startDateBox;
     private DateBox endDateBox;
     private MaterialTextBox countLeavesBox;
-    private MaterialTextBox descriptionBox;
+    //private MaterialTextBox descriptionBox;
+    private TextArea areaText;
     private MaterialButton createButton;
     
 	public LeaveRequestPage() {
@@ -89,7 +97,8 @@ public class LeaveRequestPage extends Composite {
        	countLeavesBox = new MaterialTextBox();
         
         MaterialLabel descriptionLabel = new MaterialLabel("Request Description:");
-       	descriptionBox = new MaterialTextBox();
+        areaText  = new TextArea();
+       	//descriptionBox = new MaterialTextBox();
        	
        	
        	countLeavesBox.setText("0");
@@ -139,6 +148,21 @@ public class LeaveRequestPage extends Composite {
 				listOfHolidayDates.clear();
 				listOfHolidayDates = result;
 			}
+       	});
+       	
+       	lookServ.getLookupsByCategoryId(Category.REQUEST_STATUS, new AsyncCallback<List<Lookup>>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert(caught.toString());
+			}
+
+			@Override
+			public void onSuccess(List<Lookup> result) {
+				requestStatusList.addAll(result);
+			}
+       		
+       		
        	});
        	
 
@@ -223,7 +247,8 @@ public class LeaveRequestPage extends Composite {
 				
 				start_date = startDateBox.getValue();
 				end_date = endDateBox.getValue();
-				description = descriptionBox.getText();
+				description = areaText.getText();
+				//description = descriptionBox.getText();
 				leavesCount = Integer.valueOf(countLeavesBox.getText());
 				
 				LeaveRequest lr = new LeaveRequest();
@@ -232,9 +257,30 @@ public class LeaveRequestPage extends Composite {
 				lr.setType(selectedLeaveType);
 				lr.setStartDate(start_date);
 				lr.setEndDate(end_date);
-				lr.setStatus(status);
+				//lr.setStatus(status);
 				lr.setDescription(description);
 				lr.setCountLeaves(leavesCount);
+				
+				
+				
+//				Lookup newLookup = new Lookup();
+//				newLookup.setName("debug");
+//				lr.setLeaveStatus(newLookup);
+				
+				//Lookup lu = requestStatusList.get(0);
+				//Window.alert(lu.getDescription()+" asfafasfdafsd");
+			    //lr.getLeaveStatus().setName(lu.getName());
+//			    lr.getLeaveStatus().setId(lu.getId());
+//			    lr.getLeaveStatus().setCategory(lu.getCategory());
+//			    lr.getLeaveStatus().setDescription(lu.getDescription());
+//			    lr.getLeaveStatus().setLookupId(lu.getLookupId());
+				
+				Lookup pendingLookup = findLookupByName(requestStatusList,"PENDING");
+				lr.setLeaveStatus(pendingLookup);
+				
+				//Window.alert(requestStatusList.get(0).getDescription());
+				
+				
 				
 				reqServ.saveLeaveRequest(lr, new AsyncCallback<String>() {
 
@@ -249,6 +295,10 @@ public class LeaveRequestPage extends Composite {
 					}
 
 				});
+				
+				//fetchLookups();
+				
+				//createsavelookups();
 						
 			}
         	
@@ -274,14 +324,82 @@ public class LeaveRequestPage extends Composite {
         card.add(countLeavesBox);
         card.add(descriptionLabel);
         
-        card.add(descriptionBox);
+        //card.add(descriptionBox);
+        card.add(areaText);
         
         card.add(createButton);
       
         
         initWidget(card);
     }
+	
+	@SuppressWarnings("rawtypes")
+	public void createsavelookups() {
+		
+		Lookup pendinglookup = new Lookup();
+		pendinglookup.setName("PENDING");
+		pendinglookup.setDescription("request status of pending");
+		pendinglookup.setCategory(Category.REQUEST_STATUS);
+		
+		
+		Lookup approvedlookup = new Lookup();
+		approvedlookup.setName("APPROVED");
+		approvedlookup.setDescription("request status of approved");
+		approvedlookup.setCategory(Category.REQUEST_STATUS);
+		
+		Lookup rejectedlookup = new Lookup();
+		rejectedlookup.setName("REJECTED");
+		rejectedlookup.setDescription("request status of rejected");
+		rejectedlookup.setCategory(Category.REQUEST_STATUS);
+		
+		Category statusCategory = new Category();
+		statusCategory.setName("statusCategory");
+		statusCategory.setLookups(Arrays.asList(pendinglookup, approvedlookup, rejectedlookup));
+		
+		lookServ.saveCategory(statusCategory, new AsyncCallback<String>() {
 
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert(caught.toString());
+			}
+
+			@Override
+			public void onSuccess(String result) {
+				Window.alert(result);
+			}
+			
+		});
+		
+		
+		
+		
+		
+	}
+
+	
+	public void fetchLookups() {
+		
+		lookServ.getLookupsByCategoryId(314,new AsyncCallback<List<Lookup>>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert(caught.toString());
+			}
+
+			@Override
+			public void onSuccess(List<Lookup> result) {
+				for(Lookup resulty: result) {
+					Window.alert(resulty.getName());
+				}
+			}
+			
+			
+			
+		});
+		
+		
+	}
+	
 	public MaterialTextBox getUserIdBox() {
 		return userIdBox;
 	}
@@ -314,13 +432,13 @@ public class LeaveRequestPage extends Composite {
 		this.endDateBox = endDateBox;
 	}
 
-	public MaterialTextBox getDescriptionBox() {
-		return descriptionBox;
-	}
-
-	public void setDescriptionBox(MaterialTextBox descriptionBox) {
-		this.descriptionBox = descriptionBox;
-	}
+//	public MaterialTextBox getDescriptionBox() {
+//		return descriptionBox;
+//	}
+//
+//	public void setDescriptionBox(MaterialTextBox descriptionBox) {
+//		this.descriptionBox = descriptionBox;
+//	}
 
 	public MaterialButton getCreateButton() {
 		return createButton;
@@ -329,5 +447,14 @@ public class LeaveRequestPage extends Composite {
 	public void setCreateButton(MaterialButton createButton) {
 		this.createButton = createButton;
 	}
+	
+	private Lookup findLookupByName(List<Lookup> lookupList, String targetName) {
+        for (Lookup lookup : lookupList) {
+            if (lookup.getName().equals(targetName)) {
+                return lookup; 
+            }
+        }
+        return null; 
+    }
 
 }

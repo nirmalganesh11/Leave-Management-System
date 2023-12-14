@@ -1,10 +1,12 @@
 package lms.client.ui.admin.pages;
 
 import com.google.gwt.cell.client.AbstractCell;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 
 import gwt.material.design.client.constants.IconType;
@@ -28,26 +30,27 @@ public class ActionButtonCell extends AbstractCell<LeaveRequest> {
     @Override
     public void render(Context context, LeaveRequest value, SafeHtmlBuilder sb) {
         // Render buttons using MaterialButton widget
-    	final LeaveRequest bvalue = value;
-    	
-    	
-        MaterialButton acceptButton = new MaterialButton(null, "Accept", null);
-        //acceptButton.setIconType(IconType.ASSIGNMENT_TURNED_IN);
+        final LeaveRequest bvalue = value;
+       // Window.alert(value.getDescription());
+        Button acceptButton = new Button("Accept");
+        acceptButton.setStyleName("customButtonStyle"); 
+       
+        
         acceptButton.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
-                //handler.onAcceptClick(bvalue);
-                Window.alert(bvalue.getRequestId()+" ");
+            	GWT.log("Accept button clicked");
+                handler.onAcceptClick(bvalue);
             }
         });
 
-        MaterialButton rejectButton = new MaterialButton(null, "Reject", null);
-        //rejectButton.setIconType(IconType.CLEAR);
+        Button rejectButton = new Button("Reject");
+        rejectButton.setStyleName("customButtonStyle"); 
         rejectButton.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
-                //handler.onRejectClick(bvalue);
-                Window.alert(bvalue.getRequestId()+" ");
+            	
+                handler.onRejectClick(bvalue);
             }
         });
 
@@ -57,4 +60,7 @@ public class ActionButtonCell extends AbstractCell<LeaveRequest> {
 
         sb.appendHtmlConstant(buttonPanel.getElement().getString());
     }
+    
+    
+    
 }

@@ -21,7 +21,7 @@ public class LeaveTypeServlet extends RemoteServiceServlet implements LeaveTypeS
 	
 	
 	public LeaveTypeServlet(){
-		context = new ClassPathXmlApplicationContext("services.xml");
+		context = ApplicationContextListener.appContext;
 		typeServ = context.getBean(LeaveTypeService.class);
 	}
 	

@@ -6,8 +6,8 @@ import gwt.material.design.client.ui.MaterialNavBar;
 import lms.client.asyncservices.UserServiceClient;
 import lms.client.asyncservices.UserServiceClientAsync;
 import lms.client.ui.security.LoginView;
-import lms.client.ui.staff.pages.LeaveRequestListPageStaff;
 import lms.client.ui.staff.pages.LeaveRequestPage;
+import lms.client.ui.staff.pages.listpages.LeaveRequestListPageStaff;
 import gwt.material.design.client.ui.MaterialLink;
 
 import com.google.gwt.core.client.GWT;
@@ -35,8 +35,7 @@ public class StaffPageHandler extends VerticalPanel {
 
         navBar.addStyleName("nav-bar"); 
         
-       
-//        MaterialLink homeLink = new MaterialLink("Home");
+//      MaterialLink homeLink = new MaterialLink("Home");
         MaterialLink applyLeaveLink = new MaterialLink("Apply Leave");
         MaterialLink messageLink = new MaterialLink("Messages");
         MaterialLink previousRequests = new MaterialLink("Previous Requests");
@@ -98,9 +97,7 @@ public class StaffPageHandler extends VerticalPanel {
 				
 				
 			}
-        	
-        	
-        	
+
         });
         
         applyLeaveLink.addClickHandler(new ClickHandler() {
@@ -111,7 +108,7 @@ public class StaffPageHandler extends VerticalPanel {
 				LeaveRequestPage cmp = new LeaveRequestPage();
 			    cmp.addStyleName("material-card");
 			    cmp.getUserIdBox().addStyleName("materil-textbox");
-			    cmp.getDescriptionBox().addStyleName("material-textbox");
+			    //cmp.getDescriptionBox().addStyleName("material-textbox");
 			    cmp.getCreateButton().addStyleName("material-button");
 			    
 			    changePanel.clear();
@@ -137,7 +134,15 @@ public class StaffPageHandler extends VerticalPanel {
         
         fullbarPanel.setSpacing(10);
         
-        changePanel.setSpacing(75);
+        LeaveRequestPage cmp = new LeaveRequestPage();
+	    cmp.addStyleName("material-card");
+	    cmp.getUserIdBox().addStyleName("materil-textbox");
+	    //cmp.getDescriptionBox().addStyleName("material-textbox");
+	    cmp.getCreateButton().addStyleName("material-button");
+	    
+	    changePanel.clear();
+	    changePanel.add(cmp);
+        //changePanel.setSpacing(75);
         fullbarPanel.add(navBarPanel);
         fullbarPanel.add(changePanel);
         RootPanel.get().add(fullbarPanel);

@@ -78,7 +78,26 @@
     <url-pattern>/leavesystem/request</url-pattern>
   </servlet-mapping>
   
+    <servlet>
+    <servlet-name>lookupServlet</servlet-name>
+    <servlet-class>lms.server.servlet.LookupServiceServlet</servlet-class>
+  </servlet>
   
+  <servlet-mapping>
+    <servlet-name>lookupServlet</servlet-name>
+    <url-pattern>/leavesystem/lookup</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>messageServlet</servlet-name>
+    <servlet-class>lms.server.servlet.MessageServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>messageServlet</servlet-name>
+    <url-pattern>/leavesystem/message</url-pattern>
+  </servlet-mapping>
   
   
   
@@ -128,7 +147,7 @@
 			org.springframework.web.context.request.RequestContextListener</listener-class>
 	</listener>
 	
-		<listener>
+	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	

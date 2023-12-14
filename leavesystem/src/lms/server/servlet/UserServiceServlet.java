@@ -24,8 +24,7 @@ import lms.server.api.UserService;
 import lms.server.framework.dao.ApplicationContextListener;
 import lms.server.service.UserServiceImpl;
 import lms.shared.User;
-
-
+import lms.shared.security.Role;
 
 public class UserServiceServlet extends RemoteServiceServlet implements UserServiceClient{
 
@@ -39,7 +38,7 @@ public class UserServiceServlet extends RemoteServiceServlet implements UserServ
 
 	
 	public UserServiceServlet(){
-		context = new ClassPathXmlApplicationContext("services.xml");
+		context = ApplicationContextListener.appContext;
 		userServ = context.getBean(UserService.class);
 	}
 	
@@ -138,11 +137,17 @@ public class UserServiceServlet extends RemoteServiceServlet implements UserServ
 	            "anonymousUser", "anonymousUser", 
 	            new ArrayList<>(Arrays.asList(new SimpleGrantedAuthority("ROLE_ANONYMOUS")))
 	        );
-
-	        
 	    SecurityContextHolder.getContext().setAuthentication(anonymousAuthentication);
 
 	    return "redirect:/logout-success";
+	}
+	
+	@Override 
+	public Role getAuthenticatedRole() {
+		
+		User user = getAuthenticatedUser();
+		return user.getRole();
+		
 	}
 	
 	

@@ -38,5 +38,7 @@
             <column name="leave_count" />
         </property>
         
+       
+        
     </class>
 </hibernate-mapping>

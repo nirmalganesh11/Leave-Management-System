@@ -16,7 +16,8 @@ public class LeaveRequest extends PersistantObject {
 	
 	private LeaveType type;
 	
-	private LeaveStatus status;
+	//going to remove this enumeration soon
+	//private LeaveStatus status;
 	
 	private Lookup leaveStatus;
 	
@@ -58,13 +59,13 @@ public class LeaveRequest extends PersistantObject {
 		this.type = type;
 	}
 
-	public LeaveStatus getStatus() {
-		return status;
-	}
-
-	public void setStatus(LeaveStatus status) {
-		this.status = status;
-	}
+//	public LeaveStatus getStatus() {
+//		return status;
+//	}
+//
+//	public void setStatus(LeaveStatus status) {
+//		this.status = status;
+//	}
 
 	public Date getStartDate() {
 		return startDate;
@@ -110,6 +111,7 @@ public class LeaveRequest extends PersistantObject {
 		super.detach();
 		type.detach();
 		employee.detach();
+		leaveStatus.detach();
 	}
 	
 }

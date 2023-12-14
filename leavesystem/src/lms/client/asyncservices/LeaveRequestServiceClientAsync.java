@@ -15,4 +15,13 @@ public interface LeaveRequestServiceClientAsync {
 	
 	void countLeaveDays(Date startDate,Date endDate,List<Date> holidayDays,AsyncCallback<Integer> callback);
 	
+	void getRequestsByUserId(int userId,AsyncCallback<List<LeaveRequest>> callback);
+	
+	
+	void changeRequestStatus(int requestId,String status, AsyncCallback<String> callback);
+	
+	void getAllPendingRequests(AsyncCallback<List<LeaveRequest>> callback);
+	
+	void getAllRequestHistory(AsyncCallback<List<LeaveRequest>> callback);
+	
 }

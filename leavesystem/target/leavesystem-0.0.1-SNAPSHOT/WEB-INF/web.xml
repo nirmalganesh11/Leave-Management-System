@@ -103,7 +103,8 @@
    -->
    	<context-param>
     	<param-name>contextConfigLocation</param-name>
-    	<param-value>classpath:main/resources/*.xml,classpath:main/resources/security/*.xml</param-value>
+    	<param-value>classpath:main/resources/security/*.xml,classpath:main/resources/*.xml</param-value>
+    	
 	</context-param>
    
   
@@ -121,9 +122,15 @@
 		<filter-name>filterChainProxy</filter-name> 
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-  
-  
-
+	
+	<listener>
+		<listener-class>
+			org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+	
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
 	
 
   <welcome-file-list>

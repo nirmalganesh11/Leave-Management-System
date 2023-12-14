@@ -43,7 +43,6 @@
 		<constructor-arg ref="leaveRequestDao" />
 	</bean>
 	
-	
 	<import resource ="classpath:applicationcontext.xml" />
  
 </beans>

@@ -12,4 +12,17 @@ public interface LeaveRequestService {
 	List<LeaveRequest> getAllRequests();
 	
 	int countLeaveDaysDays(Date startDate,Date endDate,List<Date> holidayDates);
+	
+	List<LeaveRequest> getLeaveRequestsByUserId(int userId);
+	
+	LeaveRequest getLeaveRequestByRequestId(int requestId);
+	
+	String updateLeaveRequest(LeaveRequest lr);
+	
+	List<LeaveRequest> currentOnLeaveRequests();
+	
+	List<LeaveRequest> getAllRequestHistory();
+	
+	List<LeaveRequest> getAllPendingRequests();	
+	
 }

@@ -20,10 +20,12 @@
  		
  		<list name ="lookups" table ="ST_LOOKUP" cascade="all"
  			lazy="false" fetch="subselect" inverse="false">
+ 			
  				<cache usage ="read-write" include="all" />
  				<key column ="CATEGORY" not-null ="false"/>
  				<index column="POSITION" />
  				<one-to-many class="lms.shared.framework.domain.Lookup" />
+ 				
  		</list>
 
  	</class>

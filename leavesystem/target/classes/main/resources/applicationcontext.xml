@@ -107,7 +107,17 @@
 		  <constructor-arg ref="sessionFactory" />
 	</bean>
 	
+	<bean id="lookupDao" class="lms.server.dao.LookupDaoImpl">
+		  <constructor-arg ref="sessionFactory" />
+	</bean>
 	
+	<bean id="messageDao" class="lms.server.dao.MessageDaoImpl">
+		  <constructor-arg ref="sessionFactory" />
+	</bean>
+	
+	
+	
+	<bean id="applicationContextListener" class="lms.server.framework.dao.ApplicationContextListener" />
 	
 	
   </beans>

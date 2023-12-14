@@ -22,7 +22,7 @@ public class HeirarchyServlet extends RemoteServiceServlet implements HeirarchyS
 	
 	
 	public HeirarchyServlet(){
-		context = new ClassPathXmlApplicationContext("services.xml");
+		context = ApplicationContextListener.appContext;
 		hrServ = context.getBean(HeirarchyService.class);
 	}
 	

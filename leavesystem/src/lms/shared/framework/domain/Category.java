@@ -9,11 +9,12 @@ public class Category extends PersistantObject {
 	private static final long serialVersionUID = 1L;
 	
 	
-	private static final long  REQUEST_STATUS =31;
+	public static final long  REQUEST_STATUS =314;
 	
 	private static final long  LEAVE_TIME = 41;
 	
-	
+	private long categoryId;
+
 	private String name;
 	
 	private List<Lookup> lookups;
@@ -40,5 +41,12 @@ public class Category extends PersistantObject {
 		this.lookups = lookups;
 	}
 	
+	public long getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(long categoryId) {
+		this.categoryId = categoryId;
+	}
 
 }

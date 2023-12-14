@@ -13,4 +13,9 @@ public interface EmployeeServiceClientAsync {
 	void getAllEmployees(AsyncCallback<List<Employee>> callback);
 	
 	void getEmployee(int userId,AsyncCallback<Employee> callback);
+	
+	void deleteEmployee(int userId,AsyncCallback<String> callback);
+	
+	void getOnLeaveEmployees(AsyncCallback<List<Employee>> callback);
+
 }

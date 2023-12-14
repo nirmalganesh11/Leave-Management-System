@@ -36,7 +36,7 @@ public class Holiday extends PersistantObject{
 	public void setHolidayDate(Date holidayDate) {
 		this.holidayDate = holidayDate;
 	}
-	public String getHolidayName() {
+	public String getHolidayName(){
 		return holidayName;
 	}
 	public void setHolidayName(String holidayName) {

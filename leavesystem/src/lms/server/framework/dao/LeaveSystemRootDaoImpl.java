@@ -15,7 +15,7 @@ public abstract class LeaveSystemRootDaoImpl extends SpringHibernateBaseRoot {
 	public void delete(int id) {
 		delete(new Integer(id));
 	}
-	
+	//automatically casted
 	public void delete(Integer id) {
 		delete(get(id));
 	}

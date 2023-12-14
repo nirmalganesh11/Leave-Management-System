@@ -53,6 +53,7 @@
 		    	<security:intercept-url pattern="/leavesystem/leavetype" access="IS_AUTHENTICATED_FULLY"/>
 		    	<security:intercept-url pattern="/leavesystem/request" access="IS_AUTHENTICATED_FULLY"/>
 		    	<security:intercept-url pattern="/leavesystem/auth" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+		    	
 		    </security:filter-security-metadata-source>
 		</property>
 		

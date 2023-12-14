@@ -43,6 +43,16 @@
 		<constructor-arg ref="leaveRequestDao" />
 	</bean>
 	
+	<bean id="LookupService" class="lms.server.service.LookupServiceImpl">
+		<constructor-arg ref="lookupDao" />
+	</bean>
+	
+	
+	<bean id="messageService" class="lms.server.service.MessageServiceImpl">
+		<constructor-arg ref="messageDao" />
+	</bean>
+	
+	
 	<import resource ="classpath:applicationcontext.xml" />
  
 </beans>
